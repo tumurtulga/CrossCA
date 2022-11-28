@@ -17,6 +17,7 @@ public class CrossCA {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Heelloo");
+        System.out.println("1234");
     }
     
 }
