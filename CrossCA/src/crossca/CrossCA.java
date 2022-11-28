@@ -114,6 +114,7 @@ public class CrossCA {
         }
         System.out.println();
         System.out.println("Getting variables from the user;");
+         System.out.println("Getting variables from the user;");
         
         Scanner sc = new Scanner(System.in);
         int userInput = sc.nextInt();
