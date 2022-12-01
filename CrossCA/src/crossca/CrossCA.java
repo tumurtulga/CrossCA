@@ -17,8 +17,10 @@ public class CrossCA {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         
+        DatabaseWriter dataOutput = new DatabaseWriter ();
+        System.out.println(dataOutput.databaseSetup());
                  /*
             * Simultaneous Equations with 2 unknowns
          */
