@@ -11,21 +11,21 @@ package crossca;
  */
 public class TwoVariables {
 
-    private final double[] x_Cof;
-    private final double[] y_Cof;
-    private final double[] equals;
-    private final double[][] eliminator;
-    private double x_Var;
-    private double y_Var;
+    private final int[] x_Cof;
+    private final int[] y_Cof;
+    private final int[] equals;
+    private final int[][] eliminator;
+    private int x_Var;
+    private int y_Var;
 
-    public TwoVariables(double[] x_coeff, double[] y_coeff, double[] eq) {
-        x_Cof = new double[]{x_coeff[0], x_coeff[1]};
-        y_Cof = new double[]{y_coeff[0], y_coeff[1]};
-        equals = new double[]{eq[0], eq[1]};
-        eliminator = new double[2][2];
+    public TwoVariables(int[] x_coeff, int[] y_coeff, int[] eq) {
+        x_Cof = new int[]{x_coeff[0], x_coeff[1]};
+        y_Cof = new int[]{y_coeff[0], y_coeff[1]};
+        equals = new int[]{eq[0], eq[1]};
+        eliminator = new int[2][2];
     }
 
-    public double[] solveSimultaneous() {
+    public int[] solveSimultaneous() {
         // STEP 2:
         eliminator[0][0] = y_Cof[1] * x_Cof[0];
         eliminator[0][1] = y_Cof[1] * equals[0];
@@ -35,13 +35,13 @@ public class TwoVariables {
 
         try {
             // STEPS 4, 5:
-            x_Var = (double) (eliminator[0][1] - eliminator[1][1]) / (eliminator[0][0] - eliminator[1][0]);
+            x_Var = (int) (eliminator[0][1] - eliminator[1][1]) / (eliminator[0][0] - eliminator[1][0]);
             // STEP 6:
-            y_Var = (double) (equals[0] - x_Cof[0] * x_Var) / y_Cof[0];
+            y_Var = (int) (equals[0] - x_Cof[0] * x_Var) / y_Cof[0];
         } catch (ArithmeticException e) {
             throw e;
         }
-        return new double[]{x_Var, y_Var};
+        return new int[]{x_Var, x_Var};
     }
 
 }

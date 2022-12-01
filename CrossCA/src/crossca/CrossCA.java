@@ -19,17 +19,17 @@ public class CrossCA {
      */
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
-        DBWriter dataOutput = new DBWriter();
-        System.out.println(dataOutput.outputSetup());
+//        DBWriter dataOutput = new DBWriter();
+//        System.out.println(dataOutput.outputSetup());
         
         /*
             * Simultaneous Equations with 2 unknowns
         */
         char[] operator = new char[]{'+', '+'};
-        double[] result2D;
-        double[] x_coeff = new double[]{2, 3};
-        double[] y_coeff = new double[]{-3, 8};
-        double[] equals = new double[]{2, 3};
+        int[] result2D;
+        int[] x_coeff = new int[]{2, 3};
+        int[] y_coeff = new int[]{-3, 8};
+        int[] equals = new int[]{2, 3};
 
         if (y_coeff[0] < 0) {
             operator[0] = '-';
@@ -40,10 +40,8 @@ public class CrossCA {
 
         System.out.println("Solving simultaneously the equations with 2 variables:");
         //Print as an equation
-        System.out.printf("%40s%.2fx %s %.2fy = %.2f%n", "", x_coeff[0],
-                operator[0], Math.abs(y_coeff[0]), equals[0]);
-        System.out.printf("%40s%.2fx %s %.2fy = %.2f%n", "", x_coeff[1],
-                operator[1], Math.abs(y_coeff[1]), equals[1]);
+        System.out.printf("%40dx %s %dy = %d%n", x_coeff[0], operator[0], Math.abs(y_coeff[0]), equals[0]);
+        System.out.printf("%40dx %s %dy = %d%n", x_coeff[1], operator[1], Math.abs(y_coeff[1]), equals[1]);
         System.out.printf("%n%30s%n%40s", "Answer:", "(x, y)  =  ");
 
         try {
@@ -51,7 +49,7 @@ public class CrossCA {
             sim2unk = new TwoVariables(x_coeff, y_coeff, equals);
             result2D = sim2unk.solveSimultaneous();
 
-            System.out.printf("(%.4f, %.4f)%n", result2D[0], result2D[1]);
+            System.out.printf("%d", result2D[0], result2D[1]);
 
         } catch (ArithmeticException e) {
             System.out.printf("(%s, %s)%n", "?", "?");
@@ -73,7 +71,7 @@ public class CrossCA {
             Arrays.fill(op, '+');
         }
 
-        double[] result3D;
+        int[] result3D;
         x_coefff = new int[]{1, 2, 1};
         y_coefff = new int[]{1, 3, -5};
         z_coefff = new int[]{1, 5, 6};
@@ -109,7 +107,7 @@ public class CrossCA {
             sim3unk = new ThreeVariables(x_coefff, y_coefff, z_coefff, equalss);
             result3D = sim3unk.solveSimultaneous();
 
-            System.out.printf("(%.4f, %.4f, %.4f)%n", result3D[0], result3D[1], result3D[2]);
+            System.out.printf("%d", result3D[0], result3D[1], result3D[2]);
 
         } catch (ArithmeticException e) {
             System.out.printf("(%s, %s, %s)%n", "?", "?", "?");
