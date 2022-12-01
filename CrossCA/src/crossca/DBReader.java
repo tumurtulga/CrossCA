@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class DBReader implements DataInputInterface {
 
-    String dbName = "mainca";
+    String dbName = "crossca";
     String DB_URL = "jdbc:mysql://localhost/" + dbName;
     String USER = "root";
     String PASS = "root";
@@ -30,7 +30,7 @@ public class DBReader implements DataInputInterface {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement stmt = conn.createStatement();
-            stmt.execute("USE mainca;");
+            stmt.execute("USE crossca;");
 
             /*
             name VARCHAR(30)

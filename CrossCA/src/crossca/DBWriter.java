@@ -49,6 +49,7 @@ public class DBWriter implements DataOutputInterface {
                     + "fullname VARCHAR(45),"
                     + "surname  VARCHAR(45),"
                     + "username VARCHAR(45),"
+<<<<<<< Updated upstream:CrossCA/src/crossca/DBWriter.java
                     + "user_id INT(10) NOT NULL PRIMARY KEY);"
             //+ "usertype VARCHAR(45),"
             //+ "usertype_id INT,"
@@ -56,10 +57,19 @@ public class DBWriter implements DataOutputInterface {
 
             /*stmt.execute(
                     "CREATE TABLE IF NOT EXISTS userData ("
+=======
+                    + "user_id INT(10) NOT NULL PRIMARY KEY,"
+                    + "usertype VARCHAR(45),"
+                    + "usertype_id INT(10) NOT NULL);"
+            );
+            
+            stmt.execute(
+                    "CREATE TABLE IF NOT EXISTS maincaData ("
+>>>>>>> Stashed changes:CrossCA/src/crossca/DatabaseWriter.java
                     
                     + "usertype VARCHAR(45),"
-                    + "usertype_id INT,"
-            );*/
+                    + "usertype_id INT(10) NOT NULL);"
+            );
             return true;
 
         } catch (SQLException e) {
