@@ -13,14 +13,15 @@ import java.sql.Statement;
  *
  * @author rae10
  */
-public class DBWriter {
-    
+public class DBWriter implements DataOutputInterface {
+
     String dbName = "mainca";
     String DB_URL = "jdbc:mysql://localhost/" + dbName;
     String USER = "root";
     String PASS = "root";
 
-    public boolean databaseSetup() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    @Override
+    public boolean outputSetup() throws ClassNotFoundException, InstantiationException, IllegalAccessException{
 
         Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
@@ -49,10 +50,10 @@ public class DBWriter {
                     + "surname  VARCHAR(45),"
                     + "username VARCHAR(45),"
                     + "user_id INT(10) NOT NULL PRIMARY KEY);"
-                    //+ "usertype VARCHAR(45),"
-                    //+ "usertype_id INT,"
+            //+ "usertype VARCHAR(45),"
+            //+ "usertype_id INT,"
             );
-            
+
             /*stmt.execute(
                     "CREATE TABLE IF NOT EXISTS userData ("
                     
@@ -64,14 +65,30 @@ public class DBWriter {
         } catch (SQLException e) {
 
             e.printStackTrace();
-        return false;
+            return false;
         }
-        
 
     }
-    
-    
-    
-    
-    
+
+    @Override
+    public boolean outputData(User user) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement stmt = conn.createStatement();
+            stmt.execute("USE mainca;");
+
+            stmt.execute(
+                    String.format("INSERT INTO userData (id, username, firstname, lastname) "
+                            + "VALUES (\"%s\", %d, \"%s\", \"%s\", \"%s\") ;",
+                            user.id, user.userName, user.firstName, user.lastName)
+            );
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

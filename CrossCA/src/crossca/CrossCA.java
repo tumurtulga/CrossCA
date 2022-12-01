@@ -20,7 +20,7 @@ public class CrossCA {
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         DBWriter dataOutput = new DBWriter();
-        System.out.println(dataOutput.databaseSetup());
+        System.out.println(dataOutput.outputSetup());
         
         /*
             * Simultaneous Equations with 2 unknowns
