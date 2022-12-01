@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author deece
  */
-public class LCM {
+public class Function {
 
     private final Integer[] set_of_numbers;
     private final Integer[] arg_copy; // Java passes arrays by reference; make a copy.
@@ -24,7 +24,7 @@ public class LCM {
     private boolean state_check; // variable to keep state
     private int calc_result;
 
-    public LCM(List<Integer> group) {
+    public Function(List<Integer> group) {
         set_of_numbers = new Integer[group.size()];
         arg_copy = new Integer[group.size()];
         index = 0;

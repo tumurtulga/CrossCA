@@ -18,12 +18,13 @@ public class CrossCA {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-        
-        DatabaseWriter dataOutput = new DatabaseWriter ();
+
+        DBWriter dataOutput = new DBWriter();
         System.out.println(dataOutput.databaseSetup());
-                 /*
+        
+        /*
             * Simultaneous Equations with 2 unknowns
-         */
+        */
         char[] operator = new char[]{'+', '+'};
         double[] result2D;
         double[] x_coeff = new double[]{2, 3};
@@ -46,8 +47,8 @@ public class CrossCA {
         System.out.printf("%n%30s%n%40s", "Answer:", "(x, y)  =  ");
 
         try {
-            Simultaneous2Unknown sim2unk;
-            sim2unk = new Simultaneous2Unknown(x_coeff, y_coeff, equals);
+            TwoVariables sim2unk;
+            sim2unk = new TwoVariables(x_coeff, y_coeff, equals);
             result2D = sim2unk.solveSimultaneous();
 
             System.out.printf("(%.4f, %.4f)%n", result2D[0], result2D[1]);
@@ -57,17 +58,16 @@ public class CrossCA {
         }
 
         System.out.println("\n\n");
-        
-        
+
+        /*
+        * Simultaneous Equations with 3 unknowns
+         */
         
         int[] x_coefff;
         int[] y_coefff;
         int[] z_coefff;
         int[] equalss;
-        
-        /*
-        * Simultaneous Equations with 3 unknowns
-         */
+
         char[][] operators = new char[3][2];
         for (char[] op : operators) {
             Arrays.fill(op, '+');
@@ -105,8 +105,8 @@ public class CrossCA {
         System.out.printf("%n%30s%n%40s", "Answer:", "(x, y, z)  =  ");
 
         try {
-            Simultaneous3Unknown sim3unk;
-            sim3unk = new Simultaneous3Unknown(x_coefff, y_coefff, z_coefff, equalss);
+            ThreeVariables sim3unk;
+            sim3unk = new ThreeVariables(x_coefff, y_coefff, z_coefff, equalss);
             result3D = sim3unk.solveSimultaneous();
 
             System.out.printf("(%.4f, %.4f, %.4f)%n", result3D[0], result3D[1], result3D[2]);
@@ -116,11 +116,11 @@ public class CrossCA {
         }
         System.out.println();
         System.out.println("Getting variables from the user;");
-         System.out.println("Getting variables from the user;");
-        
+        System.out.println("Getting variables from the user;");
+
         Scanner sc = new Scanner(System.in);
         int userInput = sc.nextInt();
-        
+
     }
-    
+
 }

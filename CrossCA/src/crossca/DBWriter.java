@@ -13,7 +13,7 @@ import java.sql.Statement;
  *
  * @author rae10
  */
-public class DatabaseWriter {
+public class DBWriter {
     
     String dbName = "mainca";
     String DB_URL = "jdbc:mysql://localhost/" + dbName;

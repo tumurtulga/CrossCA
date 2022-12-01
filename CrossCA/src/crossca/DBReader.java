@@ -8,6 +8,6 @@ package crossca;
  *
  * @author rae10
  */
-public class DataBaseReader {
+public class DBReader {
     
 }
