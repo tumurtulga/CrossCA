@@ -13,6 +13,6 @@ public interface DataOutputInterface {
 
     public boolean outputSetup() throws ClassNotFoundException, InstantiationException, IllegalAccessException;
 
-    public boolean outputData(User user);
+    public boolean outputData(User user) throws ClassNotFoundException, InstantiationException, IllegalAccessException;
 
 }
