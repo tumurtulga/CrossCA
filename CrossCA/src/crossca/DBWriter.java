@@ -28,8 +28,8 @@ public class DBWriter {
 
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement stmt = conn.createStatement();
-
-            stmt.execute("CREATE SCHEME IF NOT EXISTS " + dbName + ";");
+            System.out.println("CREATE SCHEME IF NOT EXISTS " + dbName + ";");
+            stmt.execute("CREATE SCHEMA IF NOT EXISTS " + dbName + ";");
             stmt.execute("USE mainca;");
             /*
                      fullname VARCHAR(30)
