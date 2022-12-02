@@ -19,8 +19,9 @@ public class DBWriter implements DataOutputInterface {
     String DB_URL = "jdbc:mysql://localhost/" + dbName;
     String USER = "root";
     String PASS = "root";
-
-    public boolean databaseSetup() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    
+    @Override
+    public boolean outputSetup() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
@@ -77,5 +78,10 @@ public class DBWriter implements DataOutputInterface {
         }
         return false;
 
+    }
+
+    @Override
+    public boolean outputData(User user) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
