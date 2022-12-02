@@ -13,9 +13,10 @@ import java.sql.Statement;
  *
  * @author rae10
  */
-public class DBWriter implements DataOutputInterface {
 
-  String dbName = "crossca";
+    public class DatabaseWriter {
+
+    String dbName = "crossca";
     String DB_URL = "jdbc:mysql://localhost/" + dbName;
     String USER = "root";
     String PASS = "root";
