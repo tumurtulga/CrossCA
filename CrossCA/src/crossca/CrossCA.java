@@ -33,6 +33,8 @@ public class CrossCA {
             
             switch(input) {
                 case 1:
+                    TwoVariables tv = new TwoVariables();
+                    SolveTwoVariables(tv);
 //                    System.out.println("LOGIN AS AN ADMIN");
                     menuAdmin();
                     break;
@@ -45,7 +47,7 @@ public class CrossCA {
                     createUser();
                     break;
                 case 4:
-//                    System.out.println("EXIT");
+//                    System.out.println("EXIT");1
                     exit = true;
                     sc.close();
                     break;
@@ -67,7 +69,7 @@ public class CrossCA {
         int[] x_coeff = new int[]{2, 3};
         int[] y_coeff = new int[]{-3, 8};
         int[] equals = new int[]{2, 3};
-
+        
         if (y_coeff[0] < 0) {
             operator[0] = '-';
         }
@@ -87,13 +89,12 @@ public class CrossCA {
             result2D = sim2unk.solveSimultaneous();
 
             System.out.printf("%d", result2D[0], result2D[1]);
-
         } catch (ArithmeticException e) {
             System.out.printf("(%s, %s)%n", "?", "?");
         }
 
         System.out.println("\n\n");
-
+        
         /*
         * Simultaneous Equations with 3 unknowns
          */
@@ -198,6 +199,12 @@ public class CrossCA {
         Scanner sc = new Scanner(System.in);
         System.out.println("-------------------------------");
         System.out.println("------------SIGN UP------------");
+    }
+
+    private static void SolveTwoVariables(TwoVariables EInput) {
+        EInput.solveSimultaneous();
+            
+        }
     }
     
 
