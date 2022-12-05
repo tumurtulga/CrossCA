@@ -18,23 +18,25 @@ public class CrossCA {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-        
+
         System.out.println("-------TEAM7-------------------");
         System.out.println("---LINEAR ALGEBRA--------------");
         System.out.println("---DATABASE: APPROACH----------");
         System.out.println("---OBJECT ORIENTED CONSTRUCT---");
-        
+
         boolean exit = false;
-        
-        while(!exit){
+
+        while (!exit) {
             Scanner sc = new Scanner(System.in);
             mainMenu();
             int input = sc.nextInt();
-            
-            switch(input) {
+
+            switch (input) {
                 case 1:
                     TwoVariables tv = new TwoVariables();
                     SolveTwoVariables(tv);
+                    ThreeVariables tv1 = new ThreeVariables();
+                    SolveThreeVariables(tv1);
 //                    System.out.println("LOGIN AS AN ADMIN");
                     menuAdmin();
                     break;
@@ -57,19 +59,18 @@ public class CrossCA {
             }
             System.out.println();
         }
-        
+
 //        DBWriter dataOutput = new DBWriter();
 //        System.out.println(dataOutput.outputSetup());
-        
         /*
             * Simultaneous Equations with 2 unknowns
-        */
+         */
         char[] operator = new char[]{'+', '+'};
         int[] result2D;
         int[] x_coeff = new int[]{2, 3};
         int[] y_coeff = new int[]{-3, 8};
         int[] equals = new int[]{2, 3};
-        
+
         if (y_coeff[0] < 0) {
             operator[0] = '-';
         }
@@ -94,11 +95,10 @@ public class CrossCA {
         }
 
         System.out.println("\n\n");
-        
+
         /*
         * Simultaneous Equations with 3 unknowns
          */
-        
         int[] x_coefff;
         int[] y_coefff;
         int[] z_coefff;
@@ -160,7 +160,7 @@ public class CrossCA {
     }
 
     private static void mainMenu() {
-        
+
         System.out.println("-----------------------------");
         System.out.println("----------MAIN MENU----------");
         System.out.println();
@@ -181,7 +181,7 @@ public class CrossCA {
         System.out.println("3. ACCESS USER LIST");
         System.out.println("4. REMOVE USER");
         System.out.println("5. LOG-OUT");
-        
+
     }
 
     private static void menuUser() {
@@ -203,9 +203,10 @@ public class CrossCA {
 
     private static void SolveTwoVariables(TwoVariables EInput) {
         EInput.solveSimultaneous();
-            
-        }
-    }
-    
 
+    }
+
+    private static void SolveThreeVariables(ThreeVariables EInput) {
+        EInput.solveSimultaneous();
+    }
 }

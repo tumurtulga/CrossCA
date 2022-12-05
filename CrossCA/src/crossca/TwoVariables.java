@@ -1,4 +1,4 @@
-z/*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -20,10 +20,9 @@ public class TwoVariables {
     private final int[][] eliminator;
     private int xVar;
     private int yVar;
-    float[][] M = new float[xVar][yVar];
 
     public TwoVariables() {
-        this.xCof = new int[2];
+        xCof = new int[2];
         yCof = new int[2];
         equals = new int[2];
         eliminator = new int[2][2];
@@ -37,14 +36,14 @@ public class TwoVariables {
         eliminator = new int[2][2];
     }
 
-//    public TwoVariables(int[] xCof, int[] yCof, int[] equals, int[][] eliminator) {
-//        this.xCof = xCof;
-//        this.yCof = yCof;
-//        this.equals = equals;
-//        this.eliminator = eliminator;
-//    }
+    public TwoVariables(int[] xCof, int[] yCof, int[] equals, int[][] eliminator) {
+        this.xCof = xCof;
+        this.yCof = yCof;
+        this.equals = equals;
+        this.eliminator = eliminator;
+    }
 
-    public void solveSimultaneous() {
+    public int[] solveSimultaneous() {
         Scanner sc = new Scanner(System.in);
         char[] operator = new char[]{'+', '+'};
         if (yCof[0] < 0) {
@@ -71,8 +70,8 @@ public class TwoVariables {
         }
         
         System.out.println("Solving simultaneously equations with 2 variables:");
-        System.out.printf("%dx %s %dy = %d%n", xCof[0], operator[0], Math.abs(yCof[0]), equals[0]);
-        System.out.printf("%dx %s %dy = %d%n", xCof[1], operator[1], Math.abs(yCof[1]), equals[1]);
+        System.out.printf("%40dx %s %dy = %d%n", xCof[0], operator[0], Math.abs(yCof[0]), equals[0]);
+        System.out.printf("%40dx %s %dy = %d%n", xCof[1], operator[1], Math.abs(yCof[1]), equals[1]);
         System.out.printf("%n%30s%n%40s", "Answer:", "(x, y)  =  ");
         // STEP 2:
         eliminator[0][0] = yCof[1] * xCof[0];
@@ -93,7 +92,8 @@ public class TwoVariables {
         }
         System.out.printf("%d %s %d", xVar, ", ", yVar);
         System.out.println();
-//        return new int[]{xVar, yVar};
+        
+        return new int[]{xVar, yVar};
     }
 
 }
