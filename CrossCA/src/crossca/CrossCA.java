@@ -33,8 +33,8 @@ public class CrossCA {
 
             switch (input) {
                 case 1:
-                    TwoVariables tv = new TwoVariables();
-                    SolveTwoVariables(tv);
+//                    TwoVariables tv = new TwoVariables();
+//                    SolveTwoVariables(tv);
                     ThreeVariables tv1 = new ThreeVariables();
                     SolveThreeVariables(tv1);
 //                    System.out.println("LOGIN AS AN ADMIN");
@@ -151,11 +151,6 @@ public class CrossCA {
             System.out.printf("(%s, %s, %s)%n", "?", "?", "?");
         }
         System.out.println();
-        System.out.println("Getting variables from the user;");
-        System.out.println("Getting variables from the user;");
-
-        Scanner sc = new Scanner(System.in);
-        int userInput = sc.nextInt();
 
     }
 

@@ -7,6 +7,7 @@ package crossca;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -28,7 +29,7 @@ public class ThreeVariables {
         yCof = new int[3];
         zCof = new int[3];
         equals = new int[3];
-        eliminator = new int[2][2];
+        eliminator = new int[3][3];
     }
     
     
@@ -51,6 +52,30 @@ public class ThreeVariables {
 
         Function l_c_m = new Function(stooge);
         int lcm = l_c_m.getLCM();
+        
+        Scanner sc = new Scanner(System.in);
+        
+        for(int i = 0; i <= 2; i++) {
+            System.out.println("Enter the value of x" + (i+1) + ": ");
+            int x = sc.nextInt();
+            this.xCof[i] = x;
+        }
+        for(int j = 0; j <= 2; j++) {
+            System.out.println("Enter the value of y" + (j+1) + ": ");
+            int x = sc.nextInt();
+            this.yCof[j] = x;
+        }
+        for(int z = 0; z <= 2; z++) {
+            System.out.println("Enter the value of z" + (z+1) + ": ");
+            int x = sc.nextInt();
+            this.zCof[z] = x;
+            System.out.println(Arrays.toString(zCof));
+        }
+        for(int k = 0; k <= 2; k++) {
+            System.out.println("Enter the value of constant" + (k+1) + ": ");
+            int x = sc.nextInt();
+            this.equals[k] = x;
+        }
 
         // STEP 1:
         eliminator[0][0] = (lcm * xCof[0]) / zCof[0];

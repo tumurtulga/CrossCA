@@ -69,10 +69,6 @@ public class TwoVariables {
             this.equals[k] = x;
         }
         
-        System.out.println("Solving simultaneously equations with 2 variables:");
-        System.out.printf("%40dx %s %dy = %d%n", xCof[0], operator[0], Math.abs(yCof[0]), equals[0]);
-        System.out.printf("%40dx %s %dy = %d%n", xCof[1], operator[1], Math.abs(yCof[1]), equals[1]);
-        System.out.printf("%n%30s%n%40s", "Answer:", "(x, y)  =  ");
         // STEP 2:
         eliminator[0][0] = yCof[1] * xCof[0];
         eliminator[0][1] = yCof[1] * equals[0];
@@ -90,6 +86,10 @@ public class TwoVariables {
         } catch (ArithmeticException e) {
             throw e;
         }
+        System.out.println("Solving simultaneously equations with 2 variables:");
+        System.out.printf("%40dx %s %dy = %d%n", xCof[0], operator[0], Math.abs(yCof[0]), equals[0]);
+        System.out.printf("%40dx %s %dy = %d%n", xCof[1], operator[1], Math.abs(yCof[1]), equals[1]);
+        System.out.printf("%n%30s%n%40s", "Answer:", "(x, y)  =  ");
         System.out.printf("%d %s %d", xVar, ", ", yVar);
         System.out.println();
         
