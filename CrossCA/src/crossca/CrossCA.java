@@ -18,7 +18,41 @@ public class CrossCA {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-
+        
+        System.out.println("-------TEAM7-------------------");
+        System.out.println("---LINEAR ALGEBRA--------------");
+        System.out.println("---DATABASE: APPROACH----------");
+        System.out.println("---OBJECT ORIENTED CONSTRUCT---");
+        
+        boolean exit = false;
+        
+        while(!exit){
+            Scanner sc = new Scanner(System.in);
+            mainMenu();
+            int input = sc.nextInt();
+            
+            switch(input) {
+                case 1:
+                    System.out.println("LOGIN AS AN ADMIN");
+                    break;
+                case 2:
+                    System.out.println("LOGIN AS AN USER");
+                    break;
+                case 3:
+                    System.out.println("SIGN-UP");
+                    break;
+                case 4:
+                    System.out.println("EXIT");
+                    exit = true;
+                    sc.close();
+                    break;
+                default:
+                    System.out.println("WRONG INPUT, TRY AGAIN");
+                    break;
+            }
+            System.out.println();
+        }
+        
 //        DBWriter dataOutput = new DBWriter();
 //        System.out.println(dataOutput.outputSetup());
         
@@ -119,6 +153,19 @@ public class CrossCA {
         Scanner sc = new Scanner(System.in);
         int userInput = sc.nextInt();
 
+    }
+
+    private static void mainMenu() {
+        
+        System.out.println("-----------------------------");
+        System.out.println("----------MAIN MENU----------");
+        System.out.println();
+        System.out.println("1. LOGIN AS AN ADMIN");
+        System.out.println("2. LOGIN AS AN USER");
+        System.out.println("3. SIGN-UP");
+        System.out.println("4. EXIT");
+        System.out.print("Your choice: ");
+        System.out.println();
     }
 
 }
