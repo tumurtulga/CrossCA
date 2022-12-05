@@ -33,16 +33,18 @@ public class CrossCA {
 
             switch (input) {
                 case 1:
-//                    TwoVariables tv = new TwoVariables();
-//                    SolveTwoVariables(tv);
-                    ThreeVariables tv1 = new ThreeVariables();
-                    SolveThreeVariables(tv1);
-//                    System.out.println("LOGIN AS AN ADMIN");
-                    menuAdmin();
+                    TwoVariables tv = new TwoVariables();
+                    SolveTwoVariables(tv);
                     break;
+                    
+//                    System.out.println("LOGIN AS AN ADMIN");
+//                    menuAdmin();
+                    
                 case 2:
+                ThreeVariables thv = new ThreeVariables();
+                SolveThreeVariables(thv);
 //                    System.out.println("LOGIN AS AN USER");
-                    menuUser();
+//                    menuUser();
                     break;
                 case 3:
 //                    System.out.println("SIGN-UP");
@@ -62,96 +64,97 @@ public class CrossCA {
 
 //        DBWriter dataOutput = new DBWriter();
 //        System.out.println(dataOutput.outputSetup());
-        /*
-            * Simultaneous Equations with 2 unknowns
-         */
-        char[] operator = new char[]{'+', '+'};
-        int[] result2D;
-        int[] x_coeff = new int[]{2, 3};
-        int[] y_coeff = new int[]{-3, 8};
-        int[] equals = new int[]{2, 3};
-
-        if (y_coeff[0] < 0) {
-            operator[0] = '-';
-        }
-        if (y_coeff[1] < 0) {
-            operator[1] = '-';
-        }
-
-        System.out.println("Solving simultaneously the equations with 2 variables:");
-        //Print as an equation
-        System.out.printf("%40dx %s %dy = %d%n", x_coeff[0], operator[0], Math.abs(y_coeff[0]), equals[0]);
-        System.out.printf("%40dx %s %dy = %d%n", x_coeff[1], operator[1], Math.abs(y_coeff[1]), equals[1]);
-        System.out.printf("%n%30s%n%40s", "Answer:", "(x, y)  =  ");
-
-        try {
-            TwoVariables sim2unk;
-            sim2unk = new TwoVariables(x_coeff, y_coeff, equals);
-            result2D = sim2unk.solveSimultaneous();
-
-            System.out.printf("%d", result2D[0], result2D[1]);
-        } catch (ArithmeticException e) {
-            System.out.printf("(%s, %s)%n", "?", "?");
-        }
-
-        System.out.println("\n\n");
-
-        /*
-        * Simultaneous Equations with 3 unknowns
-         */
-        int[] x_coefff;
-        int[] y_coefff;
-        int[] z_coefff;
-        int[] equalss;
-
-        char[][] operators = new char[3][2];
-        for (char[] op : operators) {
-            Arrays.fill(op, '+');
-        }
-
-        int[] result3D;
-        x_coefff = new int[]{1, 2, 1};
-        y_coefff = new int[]{1, 3, -5};
-        z_coefff = new int[]{1, 5, 6};
-        equalss = new int[]{2, 11, -29};
-
-        for (int i = 0; i < 3; i++) {
-            if (y_coefff[i] < 0) {
-                operators[i][0] = '-';
-            }
-            if (z_coefff[i] < 0) {
-                operators[i][1] = '-';
-            }
-        }
-
-        System.out.println("Solving simultaneously the equations with 3 variables:");
-        //Print as an equation
-        System.out.printf(
-                "%40dx %s %dy %s %dz = %d%n", x_coefff[0], operators[0][0],
-                Math.abs(y_coefff[0]), operators[0][1], Math.abs(z_coefff[0]), equalss[0]
-        );
-        System.out.printf(
-                "%40dx %s %dy %s %dz = %d%n", x_coefff[1], operators[1][0],
-                Math.abs(y_coefff[1]), operators[1][1], Math.abs(z_coefff[1]), equalss[1]
-        );
-        System.out.printf(
-                "%40dx %s %dy %s %dz = %d%n", x_coefff[2], operators[2][0],
-                Math.abs(y_coefff[2]), operators[2][1], Math.abs(z_coefff[2]), equalss[2]
-        );
-        System.out.printf("%n%30s%n%40s", "Answer:", "(x, y, z)  =  ");
-
-        try {
-            ThreeVariables sim3unk;
-            sim3unk = new ThreeVariables(x_coefff, y_coefff, z_coefff, equalss);
-            result3D = sim3unk.solveSimultaneous();
-
-            System.out.printf("%d", result3D[0], result3D[1], result3D[2]);
-
-        } catch (ArithmeticException e) {
-            System.out.printf("(%s, %s, %s)%n", "?", "?", "?");
-        }
-        System.out.println();
-
+//        /*
+//            * Simultaneous Equations with 2 unknowns
+//         */
+//        char[] operator = new char[]{'+', '+'};
+//        int[] result2D;
+//        int[] x_coeff = new int[]{2, 3};
+//        int[] y_coeff = new int[]{-3, 8};
+//        int[] equals = new int[]{2, 3};
+//
+//        if (y_coeff[0] < 0) {
+//            operator[0] = '-';
+//        }
+//        if (y_coeff[1] < 0) {
+//            operator[1] = '-';
+//        }
+//
+//        System.out.println("Solving simultaneously the equations with 2 variables:");
+//        //Print as an equation
+//        System.out.printf("%40dx %s %dy = %d%n", x_coeff[0], operator[0], Math.abs(y_coeff[0]), equals[0]);
+//        System.out.printf("%40dx %s %dy = %d%n", x_coeff[1], operator[1], Math.abs(y_coeff[1]), equals[1]);
+//        System.out.printf("%n%30s%n%40s", "Answer:", "(x, y)  =  ");
+//
+//        try {
+//            TwoVariables sim2unk;
+//            sim2unk = new TwoVariables(x_coeff, y_coeff, equals);
+//            result2D = sim2unk.solveSimultaneous();
+//
+//            System.out.printf("%d", result2D[0], result2D[1]);
+//        } catch (ArithmeticException e) {
+//            System.out.printf("(%s, %s)%n", "?", "?");
+//        }
+//
+//        System.out.println("\n\n");
+//
+//        /*
+//        * Simultaneous Equations with 3 unknowns
+//         */
+//        int[] x_coefff;
+//        int[] y_coefff;
+//        int[] z_coefff;
+//        int[] equalss;
+//
+//        char[][] operators = new char[3][2];
+//        for (char[] op : operators) {
+//            Arrays.fill(op, '+');
+//        }
+//
+//        int[] result3D;
+//        x_coefff = new int[]{1, 2, 1};
+//        y_coefff = new int[]{1, 3, -5};
+//        z_coefff = new int[]{1, 5, 6};
+//        equalss = new int[]{2, 11, -29};
+//
+//        for (int i = 0; i < 3; i++) {
+//            if (y_coefff[i] < 0) {
+//                operators[i][0] = '-';
+//            }
+//            if (z_coefff[i] < 0) {
+//                operators[i][1] = '-';
+//            }
+//        }
+//
+//        System.out.println("Solving simultaneously the equations with 3 variables:");
+//        //Print as an equation
+//        System.out.printf(
+//                "%40dx %s %dy %s %dz = %d%n", x_coefff[0], operators[0][0],
+//                Math.abs(y_coefff[0]), operators[0][1], Math.abs(z_coefff[0]), equalss[0]
+//        );
+//        System.out.printf(
+//                "%40dx %s %dy %s %dz = %d%n", x_coefff[1], operators[1][0],
+//                Math.abs(y_coefff[1]), operators[1][1], Math.abs(z_coefff[1]), equalss[1]
+//        );
+//        System.out.printf(
+//                "%40dx %s %dy %s %dz = %d%n", x_coefff[2], operators[2][0],
+//                Math.abs(y_coefff[2]), operators[2][1], Math.abs(z_coefff[2]), equalss[2]
+//        );
+//        System.out.printf("%n%30s%n%40s", "Answer:", "(x, y, z)  =  ");
+//
+//        try {
+//            ThreeVariables sim3unk;
+//            sim3unk = new ThreeVariables(x_coefff, y_coefff, z_coefff, equalss);
+//            result3D = sim3unk.solveSimultaneous();
+//
+//            System.out.printf("%d", result3D[0], result3D[1], result3D[2]);
+//
+//        } catch (ArithmeticException e) {
+//            System.out.printf("(%s, %s, %s)%n", "?", "?", "?");
+//        }
+//        System.out.println();
+//
+//    }
     }
 
     private static void mainMenu() {
@@ -197,11 +200,38 @@ public class CrossCA {
     }
 
     private static void SolveTwoVariables(TwoVariables EInput) {
-        EInput.solveSimultaneous();
+
+//        TwoVariables sim2unk = new TwoVariables();
+        EInput.userInput();
+//        int[] result2D;
+//        try {
+            
+            
+
+//            System.out.printf("%d", result2D[0], result2D[1]);
+//        } catch (ArithmeticException e) {
+//            System.out.printf("(%s, %s)%n", "?", "?");
+//        }
+//
+//        System.out.println("\n\n");
 
     }
 
     private static void SolveThreeVariables(ThreeVariables EInput) {
-        EInput.solveSimultaneous();
+        
+        EInput.userInput();
+//        int[] result3D;
+////        try {
+//            ThreeVariables sim3unk = new ThreeVariables();
+//            result3D = sim3unk.userInput();
+
+//            System.out.printf("%d", result3D[0], result3D[1], result3D[2]);
+//        } catch (ArithmeticException e) {
+//            System.out.printf("(%s, %s)%n", "?", "?");
+//        }
+//
+//        System.out.println("\n\n");
+
     }
+
 }
