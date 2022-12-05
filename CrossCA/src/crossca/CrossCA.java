@@ -33,16 +33,19 @@ public class CrossCA {
             
             switch(input) {
                 case 1:
-                    System.out.println("LOGIN AS AN ADMIN");
+//                    System.out.println("LOGIN AS AN ADMIN");
+                    menuAdmin();
                     break;
                 case 2:
-                    System.out.println("LOGIN AS AN USER");
+//                    System.out.println("LOGIN AS AN USER");
+                    menuUser();
                     break;
                 case 3:
-                    System.out.println("SIGN-UP");
+//                    System.out.println("SIGN-UP");
+                    createUser();
                     break;
                 case 4:
-                    System.out.println("EXIT");
+//                    System.out.println("EXIT");
                     exit = true;
                     sc.close();
                     break;
@@ -164,8 +167,38 @@ public class CrossCA {
         System.out.println("2. LOGIN AS AN USER");
         System.out.println("3. SIGN-UP");
         System.out.println("4. EXIT");
-        System.out.print("Your choice: ");
-        System.out.println();
+        System.out.println("Your choice: ");
     }
+
+    private static void menuAdmin() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-----------------------------");
+        System.out.println("------------ADMIN------------");
+        System.out.println();
+        System.out.println("1. CREATE USER");
+        System.out.println("2. MODIFY USER");
+        System.out.println("3. ACCESS USER LIST");
+        System.out.println("4. REMOVE USER");
+        System.out.println("5. LOG-OUT");
+        
+    }
+
+    private static void menuUser() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-----------------------------");
+        System.out.println("------------USER-------------");
+        System.out.println();
+        System.out.println("2. MODIFY USER");
+        System.out.println("3. SOLVE SYSTEM OF LINEAR EQUATION ");
+        System.out.println("4. SAVE");
+        System.out.println("5. LOG-OUT");
+    }
+
+    private static void createUser() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-------------------------------");
+        System.out.println("------------SIGN UP------------");
+    }
+    
 
 }
