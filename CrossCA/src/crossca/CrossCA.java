@@ -23,26 +23,29 @@ public class CrossCA {
         System.out.println("---LINEAR ALGEBRA--------------");
         System.out.println("---DATABASE: APPROACH----------");
         System.out.println("---OBJECT ORIENTED CONSTRUCT---");
-
+Scanner sc = new Scanner(System.in);
         boolean exit = false;
+        int input = sc.nextInt();
 
-        while (!exit) {
-            Scanner sc = new Scanner(System.in);
+        while (input>5) {
+            
             mainMenu();
-            int input = sc.nextInt();
+            
 
             switch (input) {
                 case 1:
-                    TwoVariables tv = new TwoVariables();
-                    SolveTwoVariables(tv);
+                    menuAdmin();
+//                    TwoVariables tv = new TwoVariables();
+//                    SolveTwoVariables(tv);
                     break;
                     
 //                    System.out.println("LOGIN AS AN ADMIN");
 //                    menuAdmin();
                     
                 case 2:
-                ThreeVariables thv = new ThreeVariables();
-                SolveThreeVariables(thv);
+                    menuUser();
+//                ThreeVariables thv = new ThreeVariables();
+//                SolveThreeVariables(thv);
 //                    System.out.println("LOGIN AS AN USER");
 //                    menuUser();
                     break;
@@ -170,7 +173,6 @@ public class CrossCA {
     }
 
     private static void menuAdmin() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("-----------------------------");
         System.out.println("------------ADMIN------------");
         System.out.println();
@@ -179,24 +181,28 @@ public class CrossCA {
         System.out.println("3. ACCESS USER LIST");
         System.out.println("4. REMOVE USER");
         System.out.println("5. LOG-OUT");
+        System.out.println("Your choice: ");
 
     }
 
     private static void menuUser() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("-----------------------------");
         System.out.println("------------USER-------------");
         System.out.println();
-        System.out.println("2. MODIFY USER");
-        System.out.println("3. SOLVE SYSTEM OF LINEAR EQUATION ");
-        System.out.println("4. SAVE");
-        System.out.println("5. LOG-OUT");
+        System.out.println("1. MODIFY USER");
+        System.out.println("2. SOLVE SYSTEM OF LINEAR EQUATION ");
+        System.out.println("3. SAVE");
+        System.out.println("4. LOG-OUT");
+        System.out.println("Your choice: ");
+        
     }
 
     private static void createUser() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("-------------------------------");
-        System.out.println("------------SIGN UP------------");
+        System.out.println("-----------EATE USER-----------");
+        System.out.println();
+        System.out.println("1. SIGN-UP");
+        System.out.println("2. EXIT");
     }
 
     private static void SolveTwoVariables(TwoVariables EInput) {
