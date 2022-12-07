@@ -23,19 +23,18 @@ public class CrossCA {
         System.out.println("---LINEAR ALGEBRA--------------");
         System.out.println("---DATABASE: APPROACH----------");
         System.out.println("---OBJECT ORIENTED CONSTRUCT---");
-Scanner sc = new Scanner(System.in);
-        boolean exit = false;
-        int input = sc.nextInt();
 
-        while (input>5) {
-            
+        boolean exit = false;
+
+        while (!exit) {
+            Scanner sc = new Scanner(System.in);
             mainMenu();
-            
+            int input = sc.nextInt();
 
             switch (input) {
                 case 1:
                     menuAdmin();
-//                    TwoVariables tv = new TwoVariables();
+                    TwoVariables tv = new TwoVariables();
 //                    SolveTwoVariables(tv);
                     break;
                     
