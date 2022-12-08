@@ -5,8 +5,6 @@
  */
 package crossca;
 
-import java.util.Scanner;
-
 /**
  *
  * @author deece
@@ -24,17 +22,9 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         
-        Scanner mykb = new Scanner(System.in);
-        
-        System.out.println("Please enter your userName. ");
-        
-        userName = mykb.nextLine();
         
         
-        
-        
-        
-        
+
     }
     
     

@@ -82,6 +82,23 @@ public class DBWriter implements DataOutputInterface {
 
     @Override
     public boolean outputData(User user) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+        
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement stmt = conn.createStatement();
+            stmt.execute("USE user;");
+
+            stmt.execute(
+                    String.format("INSERT INTO userData (user name, first name, last name, id) "
+                            + "VALUES (\"%s\", \"%s\", \"%s\", \"%s\") ;",
+                            user.id, user.userName, user.firstName, user.lastName)
+            );
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+}
 }
