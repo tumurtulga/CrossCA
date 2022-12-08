@@ -6,6 +6,7 @@
 package crossca;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -25,45 +26,48 @@ public class CrossCA {
         System.out.println("------OBJECT-ORIENTED CONCEPTS------");
         System.out.println();
 
-        boolean exit = false;
+        boolean quit = false;
 
-        while (!exit) {
-            Scanner sc = new Scanner(System.in);
-            mainMenu();
-            int input = sc.nextInt();
+        while (!quit) {
+            try {
+                Scanner sc = new Scanner(System.in);
+                mainMenu();
+                int input = sc.nextInt();
 
-            switch (input) {
-                case 1:
-                    
-                    menuAdmin();
-//                    TwoVariables tv = new TwoVariables();
-//                    SolveTwoVariables(tv);
-                    break;
-                    
+                switch (input) {
+                    case 1:
+//                    menuAdmin();
+                        TwoVariables tv = new TwoVariables();
+                        SolveTwoVariables(tv);
+                        break;
+
 //                    System.out.println("LOGIN AS AN ADMIN");
 //                    menuAdmin();
-                    
-                case 2:
-                    menuUser();
+                    case 2:
+                        menuUser();
 //                ThreeVariables thv = new ThreeVariables();
 //                SolveThreeVariables(thv);
 //                    System.out.println("LOGIN AS AN USER");
 //                    menuUser();
-                    break;
-                case 3:
+                        break;
+                    case 3:
 //                    System.out.println("SIGN-UP");
-                    createUser();
-                    break;
-                case 4:
+                        createUser();
+                        break;
+                    case 4:
 //                    System.out.println("EXIT");1
-                    exit = true;
-                    sc.close();
-                    break;
-                default:
-                    System.out.println("WRONG INPUT, TRY AGAIN");
-                    break;
+                        quit = true;
+                        sc.close();
+                        break;
+                    default:
+                        System.out.println("WRONG INPUT, TRY AGAIN");
+                        break;
+                }
+                System.out.println();
+
+            } catch (InputMismatchException ex) {
+                System.out.println("Bad Input!!! Must be an integer");
             }
-            System.out.println();
         }
 
 //        DBWriter dataOutput = new DBWriter();
@@ -159,23 +163,27 @@ public class CrossCA {
 //        System.out.println();
 //
 //    }
-    }
+        }
+
+    
 
     private static void mainMenu() {
 
         System.out.println("-------------------------");
         System.out.println("------MAIN MENU----------");
+        System.out.println("-------------------------");
         System.out.println();
-        System.out.println("1. LOGIN AS AN ADMIN-----");
-        System.out.println("2. LOGIN AS AN USER------");
-        System.out.println("3. SIGN-UP---------------");
-        System.out.println("4. EXIT------------------");
+        System.out.println("1. LOGIN AS AN ADMIN");
+        System.out.println("2. LOGIN AS AN USER");
+        System.out.println("3. SIGN-UP");
+        System.out.println("4. EXIT");
         System.out.println("Your choice: ");
     }
 
     private static void menuAdmin() {
-        System.out.println("-----------------------------");
-        System.out.println("------------ADMIN------------");
+        System.out.println("-------------------------");
+        System.out.println("------LOGIN AS AN ADMIN--");
+        System.out.println("-------------------------");
         System.out.println();
         System.out.println("1. CREATE USER");
         System.out.println("2. MODIFY USER");
@@ -187,23 +195,26 @@ public class CrossCA {
     }
 
     private static void menuUser() {
-        System.out.println("-----------------------------");
-        System.out.println("------------USER-------------");
+        System.out.println("-------------------------");
+        System.out.println("------LOGIN AS AN USER---");
+        System.out.println("-------------------------");
         System.out.println();
         System.out.println("1. MODIFY USER");
-        System.out.println("2. SOLVE SYSTEM OF LINEAR EQUATION ");
+        System.out.println("2. SOLVE LINEAR EQUATIONS");
         System.out.println("3. SAVE");
         System.out.println("4. LOG-OUT");
         System.out.println("Your choice: ");
-        
+
     }
 
     private static void createUser() {
-        System.out.println("-------------------------------");
-        System.out.println("-----------EATE USER-----------");
+        System.out.println("-------------------------");
+        System.out.println("------SIGN-UP------------");
+        System.out.println("-------------------------");
         System.out.println();
         System.out.println("1. SIGN-UP");
         System.out.println("2. EXIT");
+        System.out.println("Your choice: ");
     }
 
     private static void SolveTwoVariables(TwoVariables EInput) {
@@ -212,8 +223,6 @@ public class CrossCA {
         EInput.userInput();
 //        int[] result2D;
 //        try {
-            
-            
 
 //            System.out.printf("%d", result2D[0], result2D[1]);
 //        } catch (ArithmeticException e) {
@@ -221,11 +230,10 @@ public class CrossCA {
 //        }
 //
 //        System.out.println("\n\n");
-
     }
 
     private static void SolveThreeVariables(ThreeVariables EInput) {
-        
+
         EInput.userInput();
 //        int[] result3D;
 ////        try {
@@ -238,7 +246,6 @@ public class CrossCA {
 //        }
 //
 //        System.out.println("\n\n");
-
     }
 
 }
