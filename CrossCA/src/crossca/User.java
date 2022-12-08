@@ -1,9 +1,11 @@
-cros/*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package crossca;
+
+import java.util.Scanner;
 
 /**
  *
@@ -21,6 +23,18 @@ public class User {
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
+        
+        Scanner mykb = new Scanner(System.in);
+        
+        System.out.println("Please enter your userName. ");
+        
+        userName = mykb.nextLine();
+        
+        
+        
+        
+        
+        
     }
     
     
