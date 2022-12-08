@@ -19,10 +19,11 @@ public class CrossCA {
      */
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
-        System.out.println("-------TEAM7-------------------");
-        System.out.println("---LINEAR ALGEBRA--------------");
-        System.out.println("---DATABASE: APPROACH----------");
-        System.out.println("---OBJECT ORIENTED CONSTRUCT---");
+        System.out.println("------MIRAE & TUMURTULGA------------");
+        System.out.println("------LINEAR ALGEBRA----------------");
+        System.out.println("------DATABASE: APPROACHES & SYSTEM-");
+        System.out.println("------OBJECT-ORIENTED CONCEPTS------");
+        System.out.println();
 
         boolean exit = false;
 
@@ -33,8 +34,9 @@ public class CrossCA {
 
             switch (input) {
                 case 1:
+                    
                     menuAdmin();
-                    TwoVariables tv = new TwoVariables();
+//                    TwoVariables tv = new TwoVariables();
 //                    SolveTwoVariables(tv);
                     break;
                     
@@ -161,13 +163,13 @@ public class CrossCA {
 
     private static void mainMenu() {
 
-        System.out.println("-----------------------------");
-        System.out.println("----------MAIN MENU----------");
+        System.out.println("-------------------------");
+        System.out.println("------MAIN MENU----------");
         System.out.println();
-        System.out.println("1. LOGIN AS AN ADMIN");
-        System.out.println("2. LOGIN AS AN USER");
-        System.out.println("3. SIGN-UP");
-        System.out.println("4. EXIT");
+        System.out.println("1. LOGIN AS AN ADMIN-----");
+        System.out.println("2. LOGIN AS AN USER------");
+        System.out.println("3. SIGN-UP---------------");
+        System.out.println("4. EXIT------------------");
         System.out.println("Your choice: ");
     }
 
