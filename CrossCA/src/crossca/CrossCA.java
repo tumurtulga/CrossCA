@@ -19,6 +19,8 @@ public class CrossCA {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        
+        
 
         System.out.println("------MIRAE & TUMURTULGA------------");
         System.out.println("------LINEAR ALGEBRA----------------");
@@ -36,17 +38,18 @@ public class CrossCA {
 
                 switch (input) {
                     case 1:
-//                    menuAdmin();
-                        TwoVariables tv = new TwoVariables();
-                        SolveTwoVariables(tv);
+                        
+                    //menuAdmin();
+                        TwoVariables tv1 = new TwoVariables();
+                        SolveTwoVariables(tv1);
                         break;
 
 //                    System.out.println("LOGIN AS AN ADMIN");
 //                    menuAdmin();
                     case 2:
-                        menuUser();
-//                ThreeVariables thv = new ThreeVariables();
-//                SolveThreeVariables(thv);
+//                        menuUser();
+                        ThreeVariables tv2 = new ThreeVariables();
+                        SolveThreeVariables(tv2);
 //                    System.out.println("LOGIN AS AN USER");
 //                    menuUser();
                         break;

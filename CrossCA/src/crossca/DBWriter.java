@@ -4,10 +4,16 @@
  */
 package crossca;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,7 +27,7 @@ public class DBWriter implements DataOutputInterface {
     String PASS = "root";
 
     @Override
-    public boolean outputSetup() throws ClassNotFoundException, InstantiationException, IllegalAccessException{
+    public boolean outputSetup() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
@@ -32,6 +38,7 @@ public class DBWriter implements DataOutputInterface {
             System.out.println("CREATE SCHEME IF NOT EXISTS " + dbName + ";");
             stmt.execute("CREATE SCHEMA IF NOT EXISTS " + dbName + ";");
             stmt.execute("USE mainca;");
+
             /*
                      fullname VARCHAR(30)
                      surname  VARCHAR(30)  
@@ -71,13 +78,32 @@ public class DBWriter implements DataOutputInterface {
     }
 
     @Override
-    public boolean outputData(User user) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
+    public boolean outputData(User user) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
         try {
+            String q = "INSERT into table1(username, password, fullname, lastname) values (?, ?, ?, ?)";
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            Statement stmt = conn.createStatement();
-            stmt.execute("USE mainca;");
+            PreparedStatement stmt = conn.prepareStatement(q);
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Enter username : ");
+            String username = br.readLine();
+
+            System.out.println("Enter password : ");
+            String password = br.readLine();
+
+            System.out.println("Enter firstname : ");
+            String firstname = br.readLine();
+
+            System.out.println("Enter lastname : ");
+            String lastname = br.readLine();
+
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            stmt.setString(3, firstname);
+            stmt.setString(4, lastname);
+
+            stmt.executeUpdate();
 
             stmt.execute(
                     String.format("INSERT INTO userData (id, username, firstname, lastname) "
@@ -88,7 +114,9 @@ public class DBWriter implements DataOutputInterface {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        } catch (IOException ex) {
+            Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
 
+    }
 }
