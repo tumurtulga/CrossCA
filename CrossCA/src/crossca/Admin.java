@@ -17,6 +17,23 @@ import java.sql.Statement;
  */
 public class Admin {
     
+    public void loginAdmin() {
+        try {
+            Connection con = getConnection();
+            PreparedStatement insert = con.prepareStatement("INSERT INTO admin_data (username, password) VALUES ('"+username+"', '"+password+"')");
+            insert.execute("USE crossca");
+            insert.executeUpdate();
+            
+            
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        System.out.println("Enter your username: ");
+        System.out.println("Enter your password: ");
+    }
+    
     public void insertAdmin() throws ClassNotFoundException{
         final String username = "CCT";
         final String password = "Dublin";
@@ -26,10 +43,13 @@ public class Admin {
             insert.execute("USE crossca");
             insert.executeUpdate();
             
+            
+            
         } catch (SQLException e) {
             e.printStackTrace();
 
         }
+        
     }
         
     
