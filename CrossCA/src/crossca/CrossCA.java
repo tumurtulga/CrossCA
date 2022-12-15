@@ -24,7 +24,11 @@ public class CrossCA {
         Admin admin = new Admin();
         admin.createAdmin();
         DBWriter dataOutput = new DBWriter();
+<<<<<<< Updated upstream
         dataOutput.outputSetup();/////
+=======
+//        dataOutput.outputSetup();
+>>>>>>> Stashed changes
 
         System.out.println("------MIRAE & TUMURTULGA------------");
         System.out.println("------LINEAR ALGEBRA----------------");
