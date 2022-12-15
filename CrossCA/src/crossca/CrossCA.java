@@ -10,8 +10,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- *
- * @author deece
+ * @author Mirae Yu 
+ * @author Tumurtulga Batjargal
  */
 public class CrossCA {
 
@@ -20,6 +20,8 @@ public class CrossCA {
      */
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         
+        Admin admin = new Admin();
+        admin.createAdmin();
         DBWriter dataOutput = new DBWriter();
         dataOutput.outputSetup();
 
@@ -40,17 +42,17 @@ public class CrossCA {
                 switch (input) {
                     case 1:
                         
-                    //menuAdmin();
-                        TwoVariables tv1 = new TwoVariables();
-                        SolveTwoVariables(tv1);
+                    menuAdmin();
+//                        TwoVariables tv1 = new TwoVariables();
+//                        SolveTwoVariables(tv1);
                         break;
 
 //                    System.out.println("LOGIN AS AN ADMIN");
 //                    menuAdmin();
                     case 2:
-//                        menuUser();
-                        ThreeVariables tv2 = new ThreeVariables();
-                        SolveThreeVariables(tv2);
+                        menuUser();
+//                        ThreeVariables tv2 = new ThreeVariables();
+//                        SolveThreeVariables(tv2);
 //                    System.out.println("LOGIN AS AN USER");
 //                    menuUser();
                         break;

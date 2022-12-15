@@ -16,8 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author rae10
+ * @author Mirae Yu 
+ * @author Tumurtulga Batjargal
  */
 public class DBWriter implements DataOutputInterface {
 
@@ -35,49 +35,18 @@ public class DBWriter implements DataOutputInterface {
 
             Connection conn = DriverManager.getConnection(db_url, db_username, db_password);
 
-////            String q = "CREATE TABLE IF NOT EXISTS userdata ("
-//                    + "id int NOT NULL AUTO_INCREMENT, PRIMARY KEY, "
-//                    + "username varchar(255), "
-//                    + "password varchar(255), "
-//                    + "fullname varchar(255), "
-//                    + "lastname varchar(255)), "
-//                    ;
-            
             Statement create = conn.createStatement();
-            
-            create.execute("CREATE SCHEMA IF NOT EXISTS " + db_name +";");
+            create.execute("CREATE SCHEMA IF NOT EXISTS " + db_name + ";");
             create.execute("USE crossca");
-            
-            create.execute(
-                    "CREATE TABLE IF NOT EXISTS userdata ("
-                        + "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,"
-                        + "username varchar(254),"
-                        + "password varchar(254),"
-                        + "fullname varchar(254),"
-                        + "lastname varchar(254));"
-            );
-            
-      
-//            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//            System.out.println("Enter username : ");
-//            String username = br.readLine();
-//
-//            System.out.println("Enter password : ");
-//            String password = br.readLine();
-//
-//            System.out.println("Enter firstname : ");
-//            String firstname = br.readLine();
-//
-//            System.out.println("Enter lastname : ");
-//            String lastname = br.readLine();
-//
-//            create.setString(1, username);
-//            create.setString(2, password);
-//            create.setString(3, firstname);
-//            create.setString(4, lastname);
-//
-//            create.executeUpdate();
 
+            create.execute(
+                    "CREATE TABLE IF NOT EXISTS user_data ("
+                    + "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,"
+                    + "username varchar(254),"
+                    + "password varchar(254),"
+                    + "fullname varchar(254),"
+                    + "lastname varchar(254));"
+            );
             return true;
 
         } catch (SQLException e) {

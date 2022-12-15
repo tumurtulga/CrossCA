@@ -8,8 +8,8 @@ package crossca;
 import java.util.ArrayList;
 
 /**
- *
- * @author deece
+ * @author Mirae Yu 
+ * @author Tumurtulga Batjargal
  */
 public interface DataInputInterface {
     

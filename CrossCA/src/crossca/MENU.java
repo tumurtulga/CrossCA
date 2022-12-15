@@ -6,8 +6,8 @@
 package crossca;
 
 /**
- *
- * @author deece
+ * @author Mirae Yu 
+ * @author Tumurtulga Batjargal
  */
 public class MENU {
     

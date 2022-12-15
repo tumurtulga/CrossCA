@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author rae10
+ * @author Mirae Yu 
+ * @author Tumurtulga Batjargal
  */
 public class DBReader implements DataInputInterface {
 

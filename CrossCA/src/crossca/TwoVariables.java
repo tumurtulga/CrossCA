@@ -9,8 +9,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- *
- * @author deece
+ * @author Mirae Yu 
+ * @author Tumurtulga Batjargal
  */
 public class TwoVariables {
 

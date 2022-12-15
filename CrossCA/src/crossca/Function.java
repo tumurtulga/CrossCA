@@ -11,8 +11,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- *
- * @author deece
+ * @author Mirae Yu 
+ * @author Tumurtulga Batjargal
  */
 public class Function {
 
