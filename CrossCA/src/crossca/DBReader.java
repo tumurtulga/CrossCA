@@ -6,6 +6,7 @@ package crossca;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,42 +19,29 @@ import java.util.List;
  */
 public class DBReader implements DataInputInterface {
 
-    String dbName = "mainca";
-    String DB_URL = "jdbc:mysql://localhost/" + dbName;
-    String USER = "root";
-    String PASS = "root";
+    String db_name = "crossca";
+    String db_url = "jdbc:mysql://localhost/" + db_name;
+    String db_username = "root";
+    String db_password = "root";
 
     @Override
-    public List<User> inputData() throws ClassNotFoundException, InstantiationException, IllegalAccessException{
+    public ArrayList<String> inputData() throws ClassNotFoundException, InstantiationException, IllegalAccessException{
         Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            Statement stmt = conn.createStatement();
-            stmt.execute("USE mainca;");
-
-            /*
-            name VARCHAR(30)
-            id INTEGER PRIMARY KEY
-            birth VARCHAR(30)
-            admission VARCHAR(30)
-            medicalInfo TEXT(1000)
-             */
-            ResultSet rs = stmt.executeQuery("SELECT * from userData;");
-            List<User> userList = new ArrayList<>();
-            rs.next();
-            rs.next();
-
-//            String name = rs.getString("name");
-            int id = rs.getInt("id");
-            String userName = rs.getString("username");
-            String firstName = rs.getString("firstname");
-            String lastName = rs.getString("lastname");
-
-            User p1 = new User(id, userName, firstName, lastName);
-            userList.add(p1);
-
-            return userList;
+            Connection conn = DriverManager.getConnection(db_url, db_username, db_password);
+            PreparedStatement statement = conn.prepareStatement("SELECT username, firstname, lastname FROM userdata");
+            ResultSet result = statement.executeQuery();
+            ArrayList<String> array = new ArrayList<String>();
+            while(result.next()){
+                System.out.print(result.getString("firstname"));
+                System.out.print(" ");
+                System.out.println(result.getString("lastname"));
+                
+                array.add(result.getString("lastname"));
+            }
+       
+            return array;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

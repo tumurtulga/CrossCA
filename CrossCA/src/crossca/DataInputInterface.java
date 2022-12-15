@@ -5,7 +5,7 @@
  */
 package crossca;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,6 +13,6 @@ import java.util.List;
  */
 public interface DataInputInterface {
     
-    public List<User> inputData() throws ClassNotFoundException, InstantiationException, IllegalAccessException;
+    public ArrayList<String> inputData() throws ClassNotFoundException, InstantiationException, IllegalAccessException;
     
 }

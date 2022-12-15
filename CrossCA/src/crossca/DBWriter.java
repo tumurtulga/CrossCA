@@ -21,10 +21,10 @@ import java.util.logging.Logger;
  */
 public class DBWriter implements DataOutputInterface {
 
-    String dbName = "mainca";
-    String DB_URL = "jdbc:mysql://localhost/" + dbName;
-    String USER = "root";
-    String PASS = "root";
+    String db_name = "crossca";
+    String db_url = "jdbc:mysql://localhost/";
+    String db_username = "root";
+    String db_password = "root";
 
     @Override
     public boolean outputSetup() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
@@ -33,40 +33,51 @@ public class DBWriter implements DataOutputInterface {
 
         try {
 
-            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            Statement stmt = conn.createStatement();
-            System.out.println("CREATE SCHEME IF NOT EXISTS " + dbName + ";");
-            stmt.execute("CREATE SCHEMA IF NOT EXISTS " + dbName + ";");
-            stmt.execute("USE mainca;");
+            Connection conn = DriverManager.getConnection(db_url, db_username, db_password);
 
-            /*
-                     fullname VARCHAR(30)
-                     surname  VARCHAR(30)  
-                     username VARCHAR(30)
-                     user_id INT
-                     usertype VARCHAR(30)
-                     usertype_id INT
-                     log in/out time
-                     user activities VARCHAR(30)
-                     tracking id INT
-                   
-             */
-            stmt.execute(
-                    "CREATE TABLE IF NOT EXISTS maincaData ("
-                    + "fullname VARCHAR(45),"
-                    + "surname  VARCHAR(45),"
-                    + "username VARCHAR(45),"
-                    + "user_id INT(10) NOT NULL PRIMARY KEY);"
-            //+ "usertype VARCHAR(45),"
-            //+ "usertype_id INT,"
+////            String q = "CREATE TABLE IF NOT EXISTS userdata ("
+//                    + "id int NOT NULL AUTO_INCREMENT, PRIMARY KEY, "
+//                    + "username varchar(255), "
+//                    + "password varchar(255), "
+//                    + "fullname varchar(255), "
+//                    + "lastname varchar(255)), "
+//                    ;
+            
+            Statement create = conn.createStatement();
+            
+            create.execute("CREATE SCHEMA IF NOT EXISTS " + db_name +";");
+            create.execute("USE crossca");
+            
+            create.execute(
+                    "CREATE TABLE IF NOT EXISTS userdata ("
+                        + "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,"
+                        + "username varchar(254),"
+                        + "password varchar(254),"
+                        + "fullname varchar(254),"
+                        + "lastname varchar(254));"
             );
+            
+      
+//            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//            System.out.println("Enter username : ");
+//            String username = br.readLine();
+//
+//            System.out.println("Enter password : ");
+//            String password = br.readLine();
+//
+//            System.out.println("Enter firstname : ");
+//            String firstname = br.readLine();
+//
+//            System.out.println("Enter lastname : ");
+//            String lastname = br.readLine();
+//
+//            create.setString(1, username);
+//            create.setString(2, password);
+//            create.setString(3, firstname);
+//            create.setString(4, lastname);
+//
+//            create.executeUpdate();
 
-            /*stmt.execute(
-                    "CREATE TABLE IF NOT EXISTS userData ("
-                    
-                    + "usertype VARCHAR(45),"
-                    + "usertype_id INT,"
-            );*/
             return true;
 
         } catch (SQLException e) {

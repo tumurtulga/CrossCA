@@ -20,7 +20,8 @@ public class CrossCA {
      */
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         
-        
+        DBWriter dataOutput = new DBWriter();
+        dataOutput.outputSetup();
 
         System.out.println("------MIRAE & TUMURTULGA------------");
         System.out.println("------LINEAR ALGEBRA----------------");
