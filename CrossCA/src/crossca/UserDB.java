@@ -23,6 +23,8 @@ public class UserDB {
         Scanner sc = new Scanner(System.in);
         String dbusername = "";
         String dbpassword = "";
+        String dbfirstname = "";
+        String dblastname = "";
         try {
             System.out.println("Enter your username: ");
             String name = sc.next();
@@ -53,7 +55,9 @@ public class UserDB {
                     int input = sc.nextInt();
                     switch (input) {
                         case 1:
-                            System.out.println(login.execute());
+                            while(rs.next()) {
+                               
+                            }
                             break;
                         case 2:
                           
@@ -75,18 +79,6 @@ public class UserDB {
         }
     }
 
-    public void modifyUser() throws ClassNotFoundException {
-        Scanner sc = new Scanner(System.in);
-        String dbusername = "";
-        String dbpassword = "";
-        String dbfirstname = "";
-        String dblastname = "";
-        try {
-            Connection con = getConnection();
-            PreparedStatement show = con.prepareStatement("SELECT * FROM user_data WHERE username= '" + name + "'");
-        }
-
-    }
 
     public void insertUser() throws ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
