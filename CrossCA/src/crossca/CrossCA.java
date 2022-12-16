@@ -19,13 +19,7 @@ public class CrossCA {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-        
-        Admin admin = new Admin();
-        admin.createAdmin();
-        admin.insertAdmin();
-        DBWriter dataOutput = new DBWriter();
-        dataOutput.outputSetup();
-
+  
         System.out.println("------MIRAE & TUMURTULGA------------");
         System.out.println("------LINEAR ALGEBRA----------------");
         System.out.println("------DATABASE: APPROACHES & SYSTEM-");
@@ -42,24 +36,19 @@ public class CrossCA {
 
                 switch (input) {
                     case 1:
-                        
-//                    menuAdmin();
-                        TwoVariables tv1 = new TwoVariables();
-                        SolveTwoVariables(tv1);
+                        Admin ad = new Admin();
+                        ad.loginAdmin();
+                        ad.menuAdminChoice();
                         break;
-
-//                    System.out.println("LOGIN AS AN ADMIN");
-//                    menuAdmin();
                     case 2:
-//                        menuUser();
-                        ThreeVariables tv2 = new ThreeVariables();
-                        SolveThreeVariables(tv2);
-//                    System.out.println("LOGIN AS AN USER");
-//                    menuUser();
+                        User us = new User();
+                        us.loginUser();
+                        us.menuUserChoice();
+
                         break;
                     case 3:
-//                    System.out.println("SIGN-UP");
-                        createUser();
+                        User us1 = new User();
+                        us1.insertUser();
                         break;
                     case 4:
 //                    System.out.println("EXIT");1
@@ -186,34 +175,7 @@ public class CrossCA {
         System.out.println("4. EXIT");
         System.out.println("Your choice: ");
     }
-
-    private static void menuAdmin() {
-        System.out.println("-------------------------");
-        System.out.println("------LOGIN AS AN ADMIN--");
-        System.out.println("-------------------------");
-        System.out.println();
-        System.out.println("1. CREATE USER");
-        System.out.println("2. MODIFY USER");
-        System.out.println("3. ACCESS USER LIST");
-        System.out.println("4. REMOVE USER");
-        System.out.println("5. LOG-OUT");
-        System.out.println("Your choice: ");
-
-    }
-
-    private static void menuUser() {
-        System.out.println("-------------------------");
-        System.out.println("------LOGIN AS AN USER---");
-        System.out.println("-------------------------");
-        System.out.println();
-        System.out.println("1. MODIFY USER");
-        System.out.println("2. SOLVE LINEAR EQUATIONS");
-        System.out.println("3. SAVE");
-        System.out.println("4. LOG-OUT");
-        System.out.println("Your choice: ");
-
-    }
-
+    
     private static void createUser() {
         System.out.println("-------------------------");
         System.out.println("------SIGN-UP------------");

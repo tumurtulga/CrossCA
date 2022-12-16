@@ -8,8 +8,10 @@ package crossca;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 /**
  * @author Mirae Yu
@@ -17,44 +19,61 @@ import java.sql.Statement;
  */
 public class Admin {
     
-    public void loginAdmin() {
+    
+    
+
+    public void loginAdmin() throws ClassNotFoundException {
+        Scanner sc = new Scanner(System.in);
+        String dbusername = "";
+        String dbpassword = "";
         try {
+            System.out.println("Enter your username: ");
+            String name = sc.next();
+            System.out.println("Enter your password: ");
+            String pass = sc.next();
+
             Connection con = getConnection();
-            PreparedStatement insert = con.prepareStatement("INSERT INTO admin_data (username, password) VALUES ('"+username+"', '"+password+"')");
-            insert.execute("USE crossca");
-            insert.executeUpdate();
-            
-            
-            
+
+            PreparedStatement login = con.prepareStatement("SELECT * FROM admin_data WHERE "
+                    + "username='" + name + "' && password='" + pass + "'");
+            login.execute("USE crossca");
+
+            ResultSet rs = login.executeQuery();
+
+            while (rs.next()) {
+                dbusername = rs.getString("username");
+                dbpassword = rs.getString("password");
+            }
+            if (name.equals(dbusername) && pass.equals(dbpassword)) {
+                System.out.println("Succesful Login!\n----");
+            } else {
+                System.out.println("Incorrect Username or Password\n----");
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
 
         }
-        System.out.println("Enter your username: ");
-        System.out.println("Enter your password: ");
     }
-    
-    public void insertAdmin() throws ClassNotFoundException{
-        final String username = "CCT";
-        final String password = "Dublin";
+
+    public void insertAdminData() throws ClassNotFoundException {
+        String username = "CCT";
+        String password = "Dublin";
         try {
             Connection con = getConnection();
-            PreparedStatement insert = con.prepareStatement("INSERT INTO admin_data (username, password) VALUES ('"+username+"', '"+password+"')");
+            PreparedStatement insert = con.prepareStatement("INSERT INTO admin_data (username, password) VALUES ("
+                    + "'" + username + "', '" + password + "')");
             insert.execute("USE crossca");
             insert.executeUpdate();
-            
-            
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
 
         }
-        
-    }
-        
-    
 
-    public void createAdmin() throws ClassNotFoundException {
+    }
+
+    public void createAdminTable() throws ClassNotFoundException {
         try {
             Connection con = getConnection();
             PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS admin_data ("
@@ -64,7 +83,7 @@ public class Admin {
             );
             create.execute("USE crossca");
             create.executeUpdate();
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
 
@@ -90,17 +109,35 @@ public class Admin {
         }
 
     }
+    
+    private static void menuAdmin() {
+        System.out.println("-------------------------");
+        System.out.println("------LOGIN AS AN ADMIN--");
+        System.out.println("-------------------------");
+        System.out.println();
+        System.out.println("1. CREATE USER");
+        System.out.println("2. MODIFY USER");
+        System.out.println("3. ACCESS USER LIST");
+        System.out.println("4. REMOVE USER");
+        System.out.println("5. LOG-OUT");
+        System.out.println("Your choice: ");
 
-    public void AdminMenu(int input) {
+    }
+
+    public void menuAdminChoice() {
+        menuAdmin();
+        Scanner sc = new Scanner(System.in);
+        int input = sc.nextInt();
         switch (input) {
             case 1:
-                System.out.println("Access an user list");
                 break;
             case 2:
                 break;
             case 3:
                 break;
             case 4:
+                break;
+            default:
                 break;
 
         }
