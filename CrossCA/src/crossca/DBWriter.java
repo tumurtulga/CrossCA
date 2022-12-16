@@ -58,7 +58,7 @@ public class DBWriter implements DataOutputInterface {
     }
 
     @Override
-    public boolean outputData(User user) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public boolean outputData(UserDB user) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
         try {

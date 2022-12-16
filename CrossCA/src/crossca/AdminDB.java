@@ -17,10 +17,7 @@ import java.util.Scanner;
  * @author Mirae Yu
  * @author Tumurtulga Batjargal
  */
-public class Admin {
-    
-    
-    
+public class AdminDB {
 
     public void loginAdmin() throws ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
@@ -43,11 +40,13 @@ public class Admin {
             while (rs.next()) {
                 dbusername = rs.getString("username");
                 dbpassword = rs.getString("password");
-            }
-            if (name.equals(dbusername) && pass.equals(dbpassword)) {
-                System.out.println("Succesful Login!\n----");
-            } else {
-                System.out.println("Incorrect Username or Password\n----");
+
+                if (name.equals(dbusername) && pass.equals(dbpassword)) {
+                    System.out.println("Succesful Login!\n----");
+                    menuAdminChoice();
+                } else {
+                    System.out.println("Incorrect Username or Password\n----");
+                }
             }
 
         } catch (SQLException e) {
@@ -109,7 +108,7 @@ public class Admin {
         }
 
     }
-    
+
     private static void menuAdmin() {
         System.out.println("-------------------------");
         System.out.println("------LOGIN AS AN ADMIN--");
