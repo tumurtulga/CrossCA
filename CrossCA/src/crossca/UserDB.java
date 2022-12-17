@@ -16,7 +16,7 @@ import java.util.Scanner;
  * @author Mirae Yu
  * @author Tumurtulga Batjargal
  */
-public class UserDB extends DBConnection {
+public class UserDB extends ConnectionDB {
 
     public void loginUser() throws ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
@@ -72,24 +72,24 @@ public class UserDB extends DBConnection {
         }
     }
 
-//    public static Connection getConnection() throws ClassNotFoundException {
-//        try {
-//            String driver = "com.mysql.cj.jdbc.Driver";
-//            String db_url = "jdbc:mysql://localhost/";
-//            String db_username = "root";
-//            String db_password = "root";
-//            Class.forName(driver);
-//
-//            Connection conn = DriverManager.getConnection(db_url, db_username, db_password);
-//
-//            return conn;
-//
-//        } catch (SQLException e) {
-//
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
+    public static Connection getConnection() throws ClassNotFoundException {
+        try {
+            String driver = "com.mysql.cj.jdbc.Driver";
+            String db_url = "jdbc:mysql://localhost/";
+            String db_username = "root";
+            String db_password = "root";
+            Class.forName(driver);
+
+            Connection conn = DriverManager.getConnection(db_url, db_username, db_password);
+
+            return conn;
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     private static void menuUser() {
         

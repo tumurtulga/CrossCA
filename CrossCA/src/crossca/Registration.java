@@ -16,7 +16,7 @@ import java.util.Scanner;
  *
  * @author deece
  */
-public class Registration extends DBConnection {
+public class Registration extends ConnectionDB {
 
     public void registerUser() {
         Scanner sc = new Scanner(System.in);

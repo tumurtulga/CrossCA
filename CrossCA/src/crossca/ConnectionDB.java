@@ -13,7 +13,7 @@ import java.sql.SQLException;
  *
  * @author deece
  */
-public abstract class DBConnection {
+public abstract class ConnectionDB {
 
     final String db_url = "jdbc:mysql://localhost/";
     final String db_username = "root";

@@ -17,7 +17,7 @@ import java.util.Scanner;
  * @author Mirae Yu
  * @author Tumurtulga Batjargal
  */
-public class AdminDB extends DBConnection {
+public class AdminDB extends ConnectionDB {
 
     public void deleteUser() throws ClassNotFoundException {
 
@@ -61,40 +61,40 @@ public class AdminDB extends DBConnection {
         }
     }
 
-    public void loginAdmin() throws ClassNotFoundException {
-        Scanner sc = new Scanner(System.in);
-        String dbusername = "";
-        String dbpassword = "";
-        try {
-            Connection con = DriverManager.getConnection(db_url, db_username, db_password);
-            System.out.println("Enter your username: ");
-            String name = sc.next();
-            System.out.println("Enter your password: ");
-            String pass = sc.next();
-
-            PreparedStatement login = con.prepareStatement("SELECT * FROM admin_data WHERE "
-                    + "username='" + name + "' && password='" + pass + "'");
-            login.execute("USE crossca");
-
-            ResultSet rs = login.executeQuery();
-
-            while (rs.next()) {
-                dbusername = rs.getString("username");
-                dbpassword = rs.getString("password");
-            }
-
-            if (name.equals(dbusername) && pass.equals(dbpassword)) {
-                System.out.println("Succesful Login!\n----");
-                menuAdminChoice();
-            } else {
-                System.out.println("Incorrect Username or Password\n----");
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        }
-    }
+//    public void loginAdmin() throws ClassNotFoundException {
+//        Scanner sc = new Scanner(System.in);
+//        String dbusername = "";
+//        String dbpassword = "";
+//        try {
+//            Connection con = DriverManager.getConnection(db_url, db_username, db_password);
+//            System.out.println("Enter your username: ");
+//            String name = sc.next();
+//            System.out.println("Enter your password: ");
+//            String pass = sc.next();
+//
+//            PreparedStatement login = con.prepareStatement("SELECT * FROM admin_data WHERE "
+//                    + "username='" + name + "' && password='" + pass + "'");
+//            login.execute("USE crossca");
+//
+//            ResultSet rs = login.executeQuery();
+//
+//            while (rs.next()) {
+//                dbusername = rs.getString("username");
+//                dbpassword = rs.getString("password");
+//            }
+//
+//            if (name.equals(dbusername) && pass.equals(dbpassword)) {
+//                System.out.println("Succesful Login!\n----");
+//                menuAdminChoice();
+//            } else {
+//                System.out.println("Incorrect Username or Password\n----");
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//
+//        }
+//    }
 
     public void insertAdminData() throws ClassNotFoundException {
         String username = "CCT";

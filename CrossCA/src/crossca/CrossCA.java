@@ -36,12 +36,12 @@ public class CrossCA {
 
                 switch (input) {
                     case 1:
-                        AdminDB ad = new AdminDB();
-                        ad.loginAdmin();
+                        Login lg = new Login();
+                        lg.loginUser();
                         break;
                     case 2:
-                        UserDB us = new UserDB();
-                        us.loginUser();
+                        Login lg1 = new Login();
+                        lg1.loginUser();
 
                         break;
                     case 3:

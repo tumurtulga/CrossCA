@@ -16,9 +16,9 @@ import java.util.Scanner;
  *
  * @author deece
  */
-public class Login extends DBConnection {
+public class Login extends ConnectionDB {
 
-    public void loginUser() {
+    public void loginUser() throws ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
 
         try {
@@ -28,8 +28,9 @@ public class Login extends DBConnection {
             System.out.println("Enter your password: ");
             String pass = sc.next();
 
-            PreparedStatement login = con.prepareStatement("SELECT * FROM user_data WHERE "
-                    + "username='" + name + "' && password='" + pass + "'");
+            PreparedStatement login = con.prepareStatement("SELECT username, password FROM user_data WHERE "
+                    + "username='" + name + "' && password='" + pass + "' UNION SELECT username, password FROM admin_data WHERE "
+                    + "username='" + name + "' && password='" + pass + "' ");
             login.execute("USE crossca");
 
             ResultSet rs = login.executeQuery();
@@ -38,8 +39,15 @@ public class Login extends DBConnection {
                 String dbusername = rs.getString("username");
                 String dbpassword = rs.getString("password");
                 if (name.equals(dbusername) && pass.equals(dbpassword)) {
-                    System.out.println("Succesful Login!\n----");
-
+                    if(dbusername.matches("CCT")) {
+                        System.out.println("Admin succesfullly logged-in!\n----");
+                        AdminDB ad = new AdminDB();
+                        ad.menuAdminChoice();
+                    } else {
+                        System.out.println("User succesfully logged-in!\n----");
+                        UserDB ud = new UserDB();
+                        ud.menuUserChoice();
+                    }
                 } else {
                     System.out.println("Incorrect Username or Password\n----");
                 }
