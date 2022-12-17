@@ -17,19 +17,60 @@ import java.util.Scanner;
  * @author Mirae Yu
  * @author Tumurtulga Batjargal
  */
-public class AdminDB {
+public class AdminDB extends DBConnection {
+
+    public void deleteUser() throws ClassNotFoundException {
+
+        Scanner sc = new Scanner(System.in);
+        String dbusername = "";
+        System.out.println("Enter your username: ");
+        String name = sc.next();
+        try {
+            Connection con = DriverManager.getConnection(db_url, db_username, db_password);
+            if (name.equals(dbusername)) {
+                PreparedStatement delete = con.prepareStatement("DELETE FROM user_data WHERE username = '" + name + "' ");
+                delete.execute("USE crossca");
+                delete.executeUpdate();
+            } else {
+                System.out.println("User does not exist");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void userList() throws ClassNotFoundException {
+        try {
+            Connection con = DriverManager.getConnection(db_url, db_username, db_password);
+            PreparedStatement list = con.prepareStatement("SELECT * FROM user_data");
+            list.execute("USE crossca");
+            ResultSet rs = list.executeQuery();
+            while (rs.next()) {
+                String dbusername = rs.getString("username");
+                String dbpassword = rs.getString("password");
+                String dbfirstname = rs.getString("firstname");
+                String dblastname = rs.getString("lastname");
+
+                System.out.format("| %-15s | %-15s | %-15s | %-15s |%n", dbusername, dbpassword, dbfirstname, dblastname);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void loginAdmin() throws ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
         String dbusername = "";
         String dbpassword = "";
         try {
+            Connection con = DriverManager.getConnection(db_url, db_username, db_password);
             System.out.println("Enter your username: ");
             String name = sc.next();
             System.out.println("Enter your password: ");
             String pass = sc.next();
-
-            Connection con = getConnection();
 
             PreparedStatement login = con.prepareStatement("SELECT * FROM admin_data WHERE "
                     + "username='" + name + "' && password='" + pass + "'");
@@ -40,13 +81,13 @@ public class AdminDB {
             while (rs.next()) {
                 dbusername = rs.getString("username");
                 dbpassword = rs.getString("password");
+            }
 
-                if (name.equals(dbusername) && pass.equals(dbpassword)) {
-                    System.out.println("Succesful Login!\n----");
-                    menuAdminChoice();
-                } else {
-                    System.out.println("Incorrect Username or Password\n----");
-                }
+            if (name.equals(dbusername) && pass.equals(dbpassword)) {
+                System.out.println("Succesful Login!\n----");
+                menuAdminChoice();
+            } else {
+                System.out.println("Incorrect Username or Password\n----");
             }
 
         } catch (SQLException e) {
@@ -59,7 +100,7 @@ public class AdminDB {
         String username = "CCT";
         String password = "Dublin";
         try {
-            Connection con = getConnection();
+            Connection con = DriverManager.getConnection(db_url, db_username, db_password);
             PreparedStatement insert = con.prepareStatement("INSERT INTO admin_data (username, password) VALUES ("
                     + "'" + username + "', '" + password + "')");
             insert.execute("USE crossca");
@@ -74,7 +115,7 @@ public class AdminDB {
 
     public void createAdminTable() throws ClassNotFoundException {
         try {
-            Connection con = getConnection();
+            Connection con = DriverManager.getConnection(db_url, db_username, db_password);
             PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS admin_data ("
                     + "id int NOT NULL AUTO_INCREMENT PRIMARY KEY, "
                     + "username varchar(255), "
@@ -89,27 +130,7 @@ public class AdminDB {
         }
     }
 
-    public static Connection getConnection() throws ClassNotFoundException {
-        try {
-            String driver = "com.mysql.cj.jdbc.Driver";
-            String db_url = "jdbc:mysql://localhost/";
-            String db_username = "root";
-            String db_password = "root";
-            Class.forName(driver);
-
-            Connection conn = DriverManager.getConnection(db_url, db_username, db_password);
-
-            return conn;
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-            return null;
-        }
-
-    }
-
-    private static void menuAdmin() {
+    private static void menuAdminList() {
         System.out.println("-------------------------");
         System.out.println("------LOGIN AS AN ADMIN--");
         System.out.println("-------------------------");
@@ -123,8 +144,8 @@ public class AdminDB {
 
     }
 
-    public void menuAdminChoice() {
-        menuAdmin();
+    public void menuAdminChoice() throws ClassNotFoundException {
+        menuAdminList();
         Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
         switch (input) {
@@ -133,8 +154,10 @@ public class AdminDB {
             case 2:
                 break;
             case 3:
+                userList();
                 break;
             case 4:
+                deleteUser();
                 break;
             default:
                 break;

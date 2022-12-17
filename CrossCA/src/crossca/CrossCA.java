@@ -45,8 +45,8 @@ public class CrossCA {
 
                         break;
                     case 3:
-                        UserDB us1 = new UserDB();
-                        us1.insertUser();
+                        Registration r = new Registration();
+                        r.registerUser();
                         break;
                     case 4:
 //                    System.out.println("EXIT");1
