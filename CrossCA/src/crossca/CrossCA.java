@@ -5,6 +5,8 @@
  */
 package crossca;
 
+import Linear.ThreeVariables;
+import Linear.TwoVariables;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;

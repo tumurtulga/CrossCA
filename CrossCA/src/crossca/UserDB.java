@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -17,40 +18,79 @@ import java.util.Scanner;
  * @author Tumurtulga Batjargal
  */
 public class UserDB extends ConnectionDB {
+    
+    User user;
 
-    public void loginUser() throws ClassNotFoundException {
+    public UserDB(User user) {
+        this.user = user;
+    }
+    
+    private static void menuUserList() {
+        System.out.println("-------------------------");
+        System.out.println("------LOGIN AS AN USER---");
+        System.out.println("-------------------------");
+        System.out.println();
+        System.out.println("1. MODIFY USER");
+        System.out.println("2. SOLVE LINEAR EQUATIONS");
+        System.out.println("3. LOG-OUT");
+        System.out.println("Your choice: ");
+    }
+
+    public void menuUserChoice() {
+        menuUserList();
+        boolean quit = false;
+        while (!quit) {
+            try {
+                Scanner sc = new Scanner(System.in);
+                int input = sc.nextInt();
+                switch (input) {
+                    case 1:
+                        modifyUser();
+                        break;
+                    case 2:
+                        solveLinearEquition();
+                        break;
+                    default:
+                        quit = true;
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Bad Input!!! Must be an integer");
+            }
+
+        }
+
+    }
+    
+    private void modifyUser() {
         Scanner sc = new Scanner(System.in);
-        String dbusername = "";
-        String dbpassword = "";
+        System.out.println("Enter new username: ");
+        String name = sc.nextLine();
+        System.out.println("Enter new password: ");
+        String pass = sc.nextLine();
+        System.out.println("Enter new firstname: ");
+        String fname = sc.nextLine();
+        System.out.println("Enter new lastname");
+        String lname = sc.nextLine();
         
         try {
             Connection con = DriverManager.getConnection(db_url, db_username, db_password);
-            System.out.println("Enter your username: ");
-            String name = sc.next();
-            System.out.println("Enter your password: ");
-            String pass = sc.next();
-
-            PreparedStatement login = con.prepareStatement("SELECT * FROM user_data WHERE "
-                    + "username='" + name + "' && password='" + pass + "'");
-            login.execute("USE crossca");
-
-            ResultSet rs = login.executeQuery();
-
-            while (rs.next()) {
-                dbusername = rs.getString("username");
-                dbpassword = rs.getString("password");
-                if (name.equals(dbusername) && pass.equals(dbpassword)) {
-                    System.out.println("Succesful Login!\n----");
-                  
-                } else {
-                    System.out.println("Incorrect Username or Password\n----");
-                }
-            }
+            PreparedStatement modify = con.prepareStatement(""
+                    + "UPDATE user_data SET "
+                    + "username = '" + name + "'"
+                    + "password = '" + pass + "'"
+                    + "firstname = '" + fname + "'"
+                    + "lastname = '" + lname + "'"
+                    + "WHERE id = '" + user.getID() + "'"          
+            );
+            modify.execute("USE crossca");
+            modify.executeUpdate();
+            
 
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
+        
     }
 
     public void createUserTable() throws ClassNotFoundException {
@@ -72,34 +112,4 @@ public class UserDB extends ConnectionDB {
         }
     }
 
-    public static Connection getConnection() throws ClassNotFoundException {
-        try {
-            String driver = "com.mysql.cj.jdbc.Driver";
-            String db_url = "jdbc:mysql://localhost/";
-            String db_username = "root";
-            String db_password = "root";
-            Class.forName(driver);
-
-            Connection conn = DriverManager.getConnection(db_url, db_username, db_password);
-
-            return conn;
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    private static void menuUser() {
-        
-        
-        
-        
-    }
-
-    public void menuUserChoice() {
-        menuUser();
-
-    }
 }

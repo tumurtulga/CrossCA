@@ -6,9 +6,12 @@
 package crossca;
 
 /**
- * @author Mirae Yu 
- * @author Tumurtulga Batjargal
+ *
+ * @author deece
  */
-public class MENU {
+public enum Level {
+    admin,
+    regular;
     
+    int id;
 }
