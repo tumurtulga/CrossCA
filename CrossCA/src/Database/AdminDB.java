@@ -125,7 +125,8 @@ public class AdminDB extends ConnectionDB {
         try {
             Connection con = DriverManager.getConnection(db_url, db_username, db_password);
             if (name.equals(dbusername)) {
-                PreparedStatement delete = con.prepareStatement("DELETE * FROM equation_data, user_data  WHERE username = '" + name + "';");
+                PreparedStatement delete = con.prepareStatement("DELETE FROM user_data, equation_data  WHERE username = '" + name + "'"
+                );
                 delete.executeUpdate();
             } else {
                 System.out.println("User does not exist");
@@ -203,7 +204,7 @@ public class AdminDB extends ConnectionDB {
         String newLname = sc.nextLine();
         try {
             Connection con = DriverManager.getConnection(db_url, db_username, db_password);
-            PreparedStatement update = con.prepareStatement("UPDATE user_data SET "
+            PreparedStatement update = con.prepareStatement("UPDATE admin_data SET "
                     + "username = '" + newUname + "', "
                     + "password = '" + newPass + "', "
                     + "firstname = '" + newFname + "', "

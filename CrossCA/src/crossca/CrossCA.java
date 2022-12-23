@@ -17,6 +17,13 @@ public class CrossCA {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ClassNotFoundException {
+        
+        /*
+        MIRAE YU - 2021332
+        TUMURTULGA BATJARGAL - 2021284
+        https://github.com/tumurtulga/CrossCA
+        
+        */
 
         /*
         2x −3y −2 = 0

@@ -88,6 +88,7 @@ public class UserDB extends ConnectionDB {
                 String dbfirstname = rs.getString("firstname");
                 String dblastname = rs.getString("lastname");
                 Level dblevel = Level.valueOf(rs.getString("level"));
+                System.out.println("YOUR CURRENT PROFILE");
                 System.out.format("| %-2s | %-15s | %-15s | %-15s | %-15s | %-10s |%n", "id", "username", "password", "firstname", "lastname", "level");
                 System.out.format("| %-2s | %-15s | %-15s | %-15s | %-15s | %-10s |%n",
                         dbid, dbusername, dbpassword, dbfirstname, dblastname, dblevel);
@@ -117,7 +118,7 @@ public class UserDB extends ConnectionDB {
             System.out.println("USER PROFILE EDITED.");
         } catch (SQLException e) {
             e.printStackTrace();
-        } System.exit(0);
+        } 
     }
 
     private void solveEquation() {
@@ -170,6 +171,7 @@ public class UserDB extends ConnectionDB {
                         saver = true;
                         break;
                     case 3:
+                        menuUserChoice()
                         quit = true;
                         sc.close();
                         break;
