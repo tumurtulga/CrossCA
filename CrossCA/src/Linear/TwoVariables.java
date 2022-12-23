@@ -6,105 +6,118 @@
 package Linear;
 
 import java.util.Arrays;
-import java.util.Scanner;
+import java.util.List;
 
 /**
- * @author Mirae Yu 
+ * @author Mirae Yu
  * @author Tumurtulga Batjargal
  */
+
 public class TwoVariables {
 
-    private final int[] xCof;
-    private final int[] yCof;
-    private final int[] equals;
-    private final int[][] eliminator;
-    private int xVar;
-    private int yVar;
+    private final double[] xCof;
+    private final double[] yCof;
+    private final double[] equals;
+    private final double[][] eliminator;
+    private List<String> equations;
+    private double x_variable;
+    private double y_variable;
 
-    public TwoVariables() {
-        xCof = new int[2];
-        yCof = new int[2];
-        equals = new int[2];
-        eliminator = new int[2][2];
-
+    public TwoVariables(String input) {
+        equations = Arrays.asList(input.split(", "));
+        equations.replaceAll(String::trim);
+        equations.replaceAll(s -> s.replaceAll(" ", ""));
+        xCof = new double[2];
+        yCof = new double[2];
+        equals = new double[2];
+        eliminator = new double[2][2];
     }
 
-    public TwoVariables(int[] x_coeff, int[] y_coeff, int[] eq) {
-        xCof = new int[]{x_coeff[0], x_coeff[1]};
-        yCof = new int[]{y_coeff[0], y_coeff[1]};
-        equals = new int[]{eq[0], eq[1]};
-        eliminator = new int[2][2];
+    public TwoVariables(double[] xCoff, double[] yCoff, double[] eq) {
+        xCof = new double[]{xCoff[0], xCoff[1]};
+        yCof = new double[]{yCoff[0], yCoff[1]};
+        equals = new double[]{eq[0], eq[1]};
+        eliminator = new double[2][2];
     }
 
-    public TwoVariables(int[] xCof, int[] yCof, int[] equals, int[][] eliminator) {
-        this.xCof = xCof;
-        this.yCof = yCof;
-        this.equals = equals;
-        this.eliminator = eliminator;
-    }
+//    public TwoVariables(double[] xCof, double[] yCof, double[] equals, double[][] eliminator) {
+//        this.xCof = xCof;
+//        this.yCof = yCof;
+//        this.equals = equals;
+//        this.eliminator = eliminator;
+//    }
 
-    public int[] solveSimultaneous() {
+    public double[] solveTwo() {
 
-        // STEP 2:
+        double xVar = 0;
+        double yVar = 0;
+        String splitter = "";
+
+        splitter = equations.get(0).split("x")[0];
+        splitter = identifier(splitter);
+        xCof[0] = Double.parseDouble(splitter);
+
+        splitter = equations.get(0).split("x")[1].split("y")[0];
+        splitter = identifier(splitter);
+        yCof[0] = Double.parseDouble(splitter);
+
+        splitter = equations.get(1).split("x")[0];
+        splitter = identifier(splitter);
+        xCof[1] = Double.parseDouble(splitter);
+
+        splitter = equations.get(1).split("x")[1].split("y")[0];
+        splitter = identifier(splitter);
+        yCof[1] = Double.parseDouble(splitter);
+
+        String t1 = equations.get(0).split("x")[1].split("y")[1].split("=")[0];
+        double t2 = Double.parseDouble(equations.get(0).split("x")[1].split("y")[1].split("=")[1]);
+
+        double k1 = 0;
+        double k2 = 0;
+        if (t2 == 0 && t1.length() > 0) {
+            equals[0] = -Double.parseDouble(equations.get(0).split("=")[1]);
+            equals[1] = -Double.parseDouble(equations.get(1).split("=")[1]);
+        } else {
+            equals[0] = Double.parseDouble(equations.get(0).split("=")[1]);
+            equals[1] = Double.parseDouble(equations.get(1).split("=")[1]);
+        }
+
         eliminator[0][0] = yCof[1] * xCof[0];
         eliminator[0][1] = yCof[1] * equals[0];
-        // STEP 3:
+
         eliminator[1][0] = yCof[0] * xCof[1];
         eliminator[1][1] = yCof[0] * equals[1];
 
-        try {
-            // STEPS 4, 5:
-            xVar = (int) (eliminator[0][1] - eliminator[1][1]) / (eliminator[0][0] - eliminator[1][0]);
-            // STEP 6:
-            yVar = (int) (equals[0] - xCof[0] * xVar) / yCof[0];
+        xVar = (eliminator[0][1] - eliminator[1][1]) / (eliminator[0][0] - eliminator[1][0]);
+        yVar = (equals[0] - xCof[0] * xVar) / yCof[0];
 
-        } catch (ArithmeticException e) {
-            throw e;
-        }
-
-        return new int[]{xVar, yVar};
-    }
-
-    public int[] userInput() {
-
-        Scanner sc = new Scanner(System.in);
-        
-        char[] operator = new char[]{'+', '+'};
-        
-        for (int i = 0; i <= 1; i++) {
-            System.out.println("Enter the value of x" + (i + 1) + ": ");
-            int x = sc.nextInt();
-            this.xCof[i] = x;
-        }
-        for (int j = 0; j <= 1; j++) {
-            System.out.println("Enter the value of y" + (j + 1) + ": ");
-            int x = sc.nextInt();
-            this.yCof[j] = x;
-        }
-        for (int k = 0; k <= 1; k++) {
-            System.out.println("Enter the value of constant" + (k + 1) + ": ");
-            int x = sc.nextInt();
-            this.equals[k] = x;
-        }
-        
-        if (yCof[0] < 0) {
-            operator[0] = '-';
-        }
-        if (yCof[1] < 0) {
-            operator[1] = '-';
-        }
-        
-        solveSimultaneous();
-
-        System.out.println("Solving simultaneously equations with 2 variables:");
-        System.out.printf("%40dx %s %dy = %d%n", xCof[0], operator[0], Math.abs(yCof[0]), equals[0]);
-        System.out.printf("%40dx %s %dy = %d%n", xCof[1], operator[1], Math.abs(yCof[1]), equals[1]);
-        System.out.printf("%n%30s%n%40s", "Answer:", "(x, y)  =  ");
-        System.out.printf("%d %s %d", xVar, ", ", yVar);
-        System.out.println();
-        
-        return new int[]{xVar, yVar};
+        return new double[]{xVar, yVar};
 
     }
     
+    public double[] solve(){
+        
+        eliminator[0][0] = yCof[1] * xCof[0];
+        eliminator[0][1] = yCof[1] * equals[0];
+
+        eliminator[1][0] = yCof[0] * xCof[1];
+        eliminator[1][1] = yCof[0] * equals[1];
+
+        x_variable = (eliminator[0][1] - eliminator[1][1]) / (eliminator[0][0] - eliminator[1][0]);
+        y_variable = (equals[0] - xCof[0] * x_variable) / yCof[0];
+
+        return new double[]{x_variable, y_variable};
+    }
+    
+    public String identifier (String str) {
+        if (str.equals("") || str.equals("+")) {
+            return "1";
+        } else if (str.equals("-")) {
+            return "-1";
+        } else {
+            return str;
+        }
+
+    }
+
 }

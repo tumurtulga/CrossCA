@@ -11,26 +11,27 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author Mirae Yu 
+ * @author Mirae Yu
  * @author Tumurtulga Batjargal
  */
+
 public class Function {
 
-    private final Integer[] set_of_numbers;
-    private final Integer[] arg_copy; // Java passes arrays by reference; make a copy.
+    private final Double[] set_of_numbers;
+    private final Double[] arg_copy; // Java passes arrays by reference; make a copy.
     private final List<Integer> all_factors = new ArrayList<>(); // factors common to our set_of_numbers
 
     private int index; // index into array common_factors
     private boolean state_check; // variable to keep state
     private int calc_result;
 
-    public Function(List<Integer> group) {
-        set_of_numbers = new Integer[group.size()];
-        arg_copy = new Integer[group.size()];
+    public Function(List<Double> group) {
+        set_of_numbers = new Double[group.size()];
+        arg_copy = new Double[group.size()];
         index = 0;
 
         //iterate through and retrieve members
-        for (int number : group) {
+        for (double number : group) {
             set_of_numbers[index] = number;
             index++;
         }

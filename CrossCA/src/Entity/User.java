@@ -3,36 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package crossca;
+package Entity;
 
 /**
- *
- * @author deece
+ * @author Mirae Yu
+ * @author Tumurtulga Batjargal
  */
+
 public class User {
     
-    int ID;
+    int id;
     String username;
     String password;
     String firstname;
     String lastname;
-    Level regular;
+    Level level;
 
-    public User(int ID, String username, String password, String firstname, String lastname, Level regular) {
-        this.ID = ID;
+    public User(int id, String username, String password, String firstname, String lastname, Level level) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.regular = regular;
+        this.level = level;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -67,16 +68,15 @@ public class User {
         this.lastname = lastname;
     }
 
-    public Level getRegular() {
-        return regular;
+    public Level getLevel() {
+        return level;
     }
 
-    public void setRegular(Level regular) {
-        this.regular = regular;
+    public void setLevel(Level level) {
+        this.level = level;
     }
     
     
-    
-    
-    
+
+ 
 }
